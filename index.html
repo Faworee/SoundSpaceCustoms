@@ -14,6 +14,24 @@ body {
     margin: 0;
 }
 
+.discord-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #5865F2; /* Discord brand color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.discord-button:hover {
+    background: #4a54c9;
+}
+
 h1 {
     font-size: 3em;
     background: linear-gradient(90deg, #4facfe, #00f2fe);
@@ -410,6 +428,13 @@ h1 {
 
 /* --- Mobile-specific styles --- */
 @media (max-width: 768px) {
+    .discord-button {
+        top: 10px;
+        right: 10px;
+        padding: 8px 16px;
+        font-size: 0.9em;
+    }
+    
     h1 {
         font-size: 2.5em;
     }
@@ -489,6 +514,7 @@ h1 {
 </style>
 </head>
 <body>
+<a href="https://discord.gg/95snurYcGX" class="discord-button" target="_blank">Join our Discord</a>
 <h1>Sound Space Custom Maps</h1>
 
 <div id="search-container">
@@ -946,7 +972,7 @@ addMap("https://gist.githubusercontent.com/xilpy/d6f6285bd7744837dfea55d88e520fc
 addMap("https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/Gardens%20-%20Grimoire", "Grimoire", "Gardens", "SheaNya", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/Demikuu/post-audio-update-maps/main/feel%20the%20same", "Feel The Same", "Gardens", "Demisnya", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/Demikuu/post-audio-update-maps/main/grimoire%20but%20jumps", "Grimoire", "Gardens", "Demisnya", "Brrrr", ["No Data"]);
-addMap("https://raw.githubusercontent.com/Faworee/Faworee_Custom_Maps/refs/heads/main/HR%20-%20EEYUH!.txt", "heeyuh!", "hr", "faworee", "Brrrr", ["No Data"]);
+addMap("https://raw.githubusercontent.com/Faworee/Faworee_Custom_Maps/refs/heads/main/HR%20-%20EEYUH!.txt", "eeyuh!", "hr", "faworee", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/JACK-Zer0!%20-%20Zipper", "Zipper", "JACK-Zer0!", "SheaNya", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/Demikuu/post-audio-update-maps/main/zipper", "Zipper", "JACK-Zer0!", "Demisnya", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/xilpy/sacga/main/one%20day%20in%20your%20bed", "one day in your bed", "Jackuw", "Xilp", "Brrrr", ["No Data"]);
@@ -1122,6 +1148,7 @@ addMap("https://github.com/Trivynium/In-game-maps/raw/main/color%20hard", "Color
 addMap("https://github.com/Trivynium/In-game-maps/raw/main/time%20hard", "Time", "Xeon Diversity", "SnivyTrueForm", "Hard", ["No Data"]);
 addMap("https://github.com/Trivynium/In-game-maps/raw/main/mtf%20easy", "More Than Friends", "Kazuya", "SnivyTrueForm", "Easy", ["No Data"]);
 addMap("https://github.com/Trivynium/In-game-maps/raw/main/Where%20is%20this%3F", "ここはどこ...? (Where is this...?)", "Rizum", "SnivyTrueForm", "Easy", ["No Data"]);
+
 </script>
 </body>
 </html>
