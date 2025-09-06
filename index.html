@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sound Space Custom Maps</title>
 <style>
 body {
@@ -32,8 +33,8 @@ h1 {
 
 #search-bar {
     padding: 12px;
-    width: 60%;
-    max-width: 400px;
+    width: 50%;
+    max-width: 350px;
     border-radius: 30px;
     border: none;
     font-size: 1em;
@@ -47,6 +48,27 @@ h1 {
 #search-bar:focus {
     outline: none;
     box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+}
+
+.filter-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+#filter-toggle {
+    padding: 12px 20px;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(90deg, #17a2b8, #138496);
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+#filter-toggle:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #138496;
 }
 
 #sort-toggle {
@@ -65,51 +87,136 @@ h1 {
     box-shadow: 0 0 10px #218838;
 }
 
-.button-container {
-    margin: 20px 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+#filter-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #222;
+    min-width: 300px;
+    max-width: 400px;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.4);
+    z-index: 1000;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #444;
 }
 
-.tag-button {
-    background-color: #222;
+#filter-menu.show {
+    display: block;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+}
+
+.filter-section h3 {
+    color: #4facfe;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+}
+
+.filter-button {
+    background-color: #333;
     color: white;
     border: none;
-    border-radius: 25px;
-    padding: 8px 18px;
+    border-radius: 20px;
+    padding: 6px 12px;
     cursor: pointer;
-    font-size: 0.95em;
-    font-weight: bold;
+    font-size: 0.9em;
     transition: all 0.2s;
 }
 
-.tag-button:hover {
+.filter-button:hover {
     background-color: #444;
     box-shadow: 0 0 8px rgba(255,255,255,0.2);
 }
 
-.tag-button.active {
+.filter-button.active {
     background: linear-gradient(90deg, #28a745, #218838);
     color: white;
-    box-shadow: 0 0 10px #218838;
+    box-shadow: 0 0 8px #218838;
 }
 
-.section-title {
-    font-size: 1.3em;
-    margin-top: 30px;
-    margin-bottom: 10px;
-    color: #aaa;
+.apm-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.apm-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 4px 0;
+}
+
+.apm-option input[type="radio"] {
+    margin: 0;
+    accent-color: #4facfe;
+}
+
+.apm-option label {
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.filter-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #444;
+}
+
+.clear-filters, .apply-filters {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s;
+}
+
+.clear-filters {
+    background-color: #dc3545;
+    color: white;
+}
+
+.clear-filters:hover {
+    background-color: #c82333;
+}
+
+.apply-filters {
+    background-color: #007bff;
+    color: white;
+}
+
+.apply-filters:hover {
+    background-color: #0056b3;
 }
 
 #map-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 20px;
-    padding: 0 10px;
-    margin: auto;
+    padding: 0 20px;
+    margin: 0 auto;
     max-width: 1400px;
+    align-items: start;
 }
 
 .map-card {
@@ -118,10 +225,13 @@ h1 {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 15px;
-    min-height: 180px;
+    padding: 20px;
+    min-height: 200px;
     border: 2px solid #555;
     transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+    background-color: #222;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .map-card:hover {
@@ -144,6 +254,7 @@ h1 {
     justify-content: space-evenly;
     align-items: center;
     text-align: center;
+    gap: 8px;
 }
 
 .map-artist {
@@ -183,22 +294,19 @@ h1 {
 .map-footer {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     flex-wrap: nowrap;
-    gap: 8px;
-    margin-top: auto;
+    gap: 12px;
+    margin-top: 15px;
 }
 
 .map-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 4px;
-    max-width: 100%;
+    max-width: 65%;
     justify-content: flex-start;
     flex-grow: 1;
-    overflow: visible;
-    mask-image: none;
-    -webkit-mask-image: none;
 }
 
 .map-tags span {
@@ -209,16 +317,26 @@ h1 {
     white-space: nowrap;
 }
 
-.copy-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+    align-items: flex-start;
+}
+
+.copy-btn, .dropdown-toggle {
     border-radius: 25px;
-    padding: 5px 12px;
+    padding: 6px 12px;
     cursor: pointer;
+    font-size: 0.85em;
     transition: background 0.2s, transform 0.2s;
     flex-shrink: 0;
-    font-size: 0.85em;
+    border: none;
+    color: white;
+}
+
+.copy-btn {
+    background-color: #007bff;
 }
 
 .copy-btn:hover {
@@ -228,6 +346,52 @@ h1 {
 
 .copy-btn.copied {
     background-color: #28a745;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    background-color: #333;
+    width: 30px;
+    padding: 6px;
+}
+
+.dropdown-toggle:hover {
+    background-color: #555;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #222;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 8px;
+    overflow: hidden;
+    top: 100%;
+    margin-top: 5px;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-item {
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    background-color: #222;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #444;
 }
 
 #popup {
@@ -243,6 +407,85 @@ h1 {
     font-size: 1em;
     z-index: 1000;
 }
+
+/* --- Mobile-specific styles --- */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5em;
+    }
+    
+    #search-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    #search-bar {
+        width: 90%;
+        padding: 15px;
+    }
+    
+    #filter-toggle, #sort-toggle {
+        padding: 12px 20px;
+        width: auto;
+    }
+    
+    #filter-menu {
+        min-width: 280px;
+        max-width: 90vw;
+        left: 5%;
+        transform: none;
+    }
+    
+    #map-list {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 15px;
+        padding: 0 10px;
+    }
+    
+    .map-card {
+        padding: 15px;
+        min-height: 180px;
+    }
+    
+    .map-name {
+        font-size: 1em;
+    }
+    
+    .map-artist, .map-mapper, .map-difficulty {
+        font-size: 0.75em;
+    }
+    
+    .map-tags {
+        max-width: 60%;
+    }
+    
+    .map-tags span {
+        font-size: 0.65em;
+    }
+    
+    .copy-btn, .dropdown-toggle {
+        font-size: 0.75em;
+        padding: 5px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #map-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .map-footer {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .map-tags {
+        max-width: 100%;
+        justify-content: center;
+    }
+}
 </style>
 </head>
 <body>
@@ -250,83 +493,172 @@ h1 {
 
 <div id="search-container">
     <input type="text" id="search-bar" placeholder="Search maps...">
+    
+    <div class="filter-dropdown">
+        <button id="filter-toggle">Filters</button>
+        <div id="filter-menu">
+            <div class="filter-section">
+                <h3>Difficulty</h3>
+                <div class="filter-buttons" id="difficulty-filters">
+                    <button class="filter-button" data-filter="Easy">Easy</button>
+                    <button class="filter-button" data-filter="Medium">Medium</button>
+                    <button class="filter-button" data-filter="Hard">Hard</button>
+                    <button class="filter-button" data-filter="Logic">Logic</button>
+                    <button class="filter-button" data-filter="Brrrr">Brrrr</button>
+                    <button class="filter-button" data-filter="Tasukete">Tasukete</button>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>Patterns</h3>
+                <div class="filter-buttons" id="pattern-filters">
+                    <button class="filter-button" data-filter="Streams">Streams</button>
+                    <button class="filter-button" data-filter="Walls">Walls</button>
+                    <button class="filter-button" data-filter="Tech">Tech</button>
+                    <button class="filter-button" data-filter="Jumps">Jumps</button>
+                    <button class="filter-button" data-filter="Quantum">Quantum</button>
+                    <button class="filter-button" data-filter="Unconventional">Unconventional</button>
+                    <button class="filter-button" data-filter="Bursts">Bursts</button>
+                    <button class="filter-button" data-filter="Timing">Timing</button>
+                    <button class="filter-button" data-filter="Stacks">Stacks</button>
+                    <button class="filter-button" data-filter="Spins">Spins</button>
+                </div>
+            </div>
+            
+            <div class="filter-section">
+                <h3>APM Music Filter</h3>
+                <div class="apm-filter">
+                    <div class="apm-option">
+                        <input type="radio" id="apm-all" name="apm-filter" value="all" checked>
+                        <label for="apm-all">All maps (APM + Normal)</label>
+                    </div>
+                    <div class="apm-option">
+                        <input type="radio" id="apm-only" name="apm-filter" value="only">
+                        <label for="apm-only">Only APM Music maps</label>
+                    </div>
+                    <div class="apm-option">
+                        <input type="radio" id="apm-none" name="apm-filter" value="none">
+                        <label for="apm-none">No APM Music maps</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="filter-actions">
+                <button class="clear-filters">Clear All</button>
+                <button class="apply-filters">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+    
     <button id="sort-toggle">Sort: Easy → Hard</button>
 </div>
 
-<div class="section-title">Difficulty</div>
-<div class="button-container" id="difficulty-tags">
-    <button class="tag-button">Easy</button>
-    <button class="tag-button">Medium</button>
-    <button class="tag-button">Hard</button>
-    <button class="tag-button">Logic</button>
-    <button class="tag-button">Brrrr</button>
-    <button class="tag-button">Tasukete</button>
-</div>
-
-<div class="section-title">Pattern(s)</div>
-<div class="button-container" id="style-tags">
-    <button class="tag-button">Streams</button>
-    <button class="tag-button">Walls</button>
-    <button class="tag-button">Tech</button>
-    <button class="tag-button">Jumps</button>
-    <button class="tag-button">Quantum</button>
-    <button class="tag-button">Unconventional</button>
-    <button class="tag-button">Bursts</button>
-    <button class="tag-button">Timing</button>
-    <button class="tag-button">Stacks</button>
-    <button class="tag-button">Spins</button>
-</div>
-
-<div class="section-title">Custom Maps</div>
 <div id="map-list"></div>
-<div id="popup">Link copied!</div>
+<div id="popup"></div>
 
 <script>
 const difficultyOrder = ["Easy", "Medium", "Hard", "Logic", "Brrrr", "Tasukete"];
-const difficultyColors = {
-    "easy": "#28a745",
-    "medium": "#FFA500",
-    "hard": "#FF0000",
-    "logic": "#800080",
-    "brrrr": "#FFFFFF",
-    "tasukete": "#5DADE2",
-};
 
 let sortAscending = true;
 let maps = [];
-let selectedStyles = [];
 let selectedDifficulties = [];
+let selectedPatterns = [];
+let apmFilter = "all";
 
 const searchBar = document.getElementById('search-bar');
 const mapList = document.getElementById('map-list');
 const sortToggle = document.getElementById('sort-toggle');
+const filterToggle = document.getElementById('filter-toggle');
+const filterMenu = document.getElementById('filter-menu');
 const popup = document.getElementById('popup');
 
-function setupTagButtons(containerId, targetArray) {
-    document.querySelectorAll(`#${containerId} .tag-button`).forEach(button => {
-        button.addEventListener('click', () => {
-            const tag = button.textContent;
-            button.classList.toggle('active');
-            if (button.classList.contains('active')) targetArray.push(tag);
-            else {
-                const idx = targetArray.indexOf(tag);
-                if (idx > -1) targetArray.splice(idx, 1);
+// Filter functionality
+filterToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
+    filterMenu.classList.toggle('show');
+});
+
+// Close filter menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!filterToggle.contains(e.target) && !filterMenu.contains(e.target)) {
+        filterMenu.classList.remove('show');
+    }
+});
+
+// Handle filter buttons
+document.querySelectorAll('#difficulty-filters .filter-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const difficulty = button.dataset.filter;
+        button.classList.toggle('active');
+        
+        if (button.classList.contains('active')) {
+            if (!selectedDifficulties.includes(difficulty)) {
+                selectedDifficulties.push(difficulty);
             }
-            renderMaps();
-        });
+        } else {
+            selectedDifficulties = selectedDifficulties.filter(d => d !== difficulty);
+        }
     });
-}
+});
 
-setupTagButtons("style-tags", selectedStyles);
-setupTagButtons("difficulty-tags", selectedDifficulties);
+document.querySelectorAll('#pattern-filters .filter-button').forEach(button => {
+    button.addEventListener('click', () => {
+        const pattern = button.dataset.filter;
+        button.classList.toggle('active');
+        
+        if (button.classList.contains('active')) {
+            if (!selectedPatterns.includes(pattern)) {
+                selectedPatterns.push(pattern);
+            }
+        } else {
+            selectedPatterns = selectedPatterns.filter(p => p !== pattern);
+        }
+    });
+});
 
+// Handle APM filter
+document.querySelectorAll('input[name="apm-filter"]').forEach(radio => {
+    radio.addEventListener('change', () => {
+        apmFilter = radio.value;
+    });
+});
+
+// Clear filters
+document.querySelector('.clear-filters').addEventListener('click', () => {
+    selectedDifficulties = [];
+    selectedPatterns = [];
+    apmFilter = "all";
+    
+    document.querySelectorAll('.filter-button.active').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    document.getElementById('apm-all').checked = true;
+    renderMaps();
+});
+
+// Apply filters (just re-render, since we're filtering in real-time)
+document.querySelector('.apply-filters').addEventListener('click', () => {
+    renderMaps();
+    filterMenu.classList.remove('show');
+});
+
+// Sort functionality
 sortToggle.addEventListener('click', () => {
     sortAscending = !sortAscending;
     sortToggle.textContent = sortAscending ? "Sort: Easy → Hard" : "Sort: Hard → Easy";
     renderMaps();
 });
 
+// Search functionality
 searchBar.addEventListener('input', renderMaps);
+
+function showPopup(message, isError = false) {
+    popup.textContent = message;
+    popup.style.backgroundColor = isError ? "#dc3545" : "#28a745";
+    popup.style.display = "block";
+    setTimeout(() => { popup.style.display = "none"; }, 2500);
+}
 
 function addMap(link, mapName, artist, mapper, difficulty, patterns) {
     if (typeof patterns === 'string') {
@@ -336,19 +668,47 @@ function addMap(link, mapName, artist, mapper, difficulty, patterns) {
     renderMaps();
 }
 
-function showPopup() {
-    popup.style.display = "block";
-    setTimeout(() => { popup.style.display = "none"; }, 1500);
+function isApmMap(artist) {
+    return artist.toLowerCase().includes('apm music');
+}
+
+function getRawUrl(url) {
+    if (url.includes('github.com')) {
+        let newUrl = url.replace('github.com', 'raw.githubusercontent.com');
+        newUrl = newUrl.replace('/blob/', '/').replace('/raw/', '/');
+        return newUrl;
+    }
+    if (url.includes('gitlab.com') && url.includes('/-/blob/')) {
+        return url.replace('/-/blob/', '/-/raw/');
+    }
+    return url;
 }
 
 function renderMaps() {
     mapList.innerHTML = "";
+    
     let filtered = maps.filter(m => {
         const searchText = searchBar.value.toLowerCase();
-        const matchesSearch = m.mapName.toLowerCase().includes(searchText) || m.artist.toLowerCase().includes(searchText) || m.mapper.toLowerCase().includes(searchText);
-        const matchesStyles = selectedStyles.length === 0 || selectedStyles.every(tag => m.patterns.includes(tag));
-        const matchesDifficulty = selectedDifficulties.length === 0 || selectedDifficulties.includes(m.difficulty);
-        return matchesSearch && matchesStyles && matchesDifficulty;
+        const matchesSearch = m.mapName.toLowerCase().includes(searchText) || 
+                            m.artist.toLowerCase().includes(searchText) || 
+                            m.mapper.toLowerCase().includes(searchText);
+        
+        const matchesDifficulty = selectedDifficulties.length === 0 || 
+                                selectedDifficulties.includes(m.difficulty);
+        
+        const matchesPatterns = selectedPatterns.length === 0 || 
+                              selectedPatterns.every(pattern => m.patterns.includes(pattern));
+        
+        // APM filter logic
+        const isApm = isApmMap(m.artist);
+        let matchesApm = true;
+        if (apmFilter === "only") {
+            matchesApm = isApm;
+        } else if (apmFilter === "none") {
+            matchesApm = !isApm;
+        }
+        
+        return matchesSearch && matchesDifficulty && matchesPatterns && matchesApm;
     });
 
     filtered.sort((a, b) => {
@@ -368,11 +728,8 @@ function renderMaps() {
             mapDifficulty = "brrrr";
         }
         
-        let difficultyColor = difficultyColors[mapDifficulty] || '#555';
         card.classList.add(mapDifficulty);
-        card.style.backgroundColor = `#222`;
 
-        // Create the pattern bubbles HTML
         let mapTagsHtml = '';
         if (m.patterns && m.patterns.length > 0 && !(m.patterns.length === 1 && m.patterns[0] === "No Data")) {
             mapTagsHtml = `<div class="map-tags">${m.patterns.map(p => `<span>${p}</span>`).join('')}</div>`;
@@ -389,21 +746,78 @@ function renderMaps() {
             </div>
             <div class="map-footer">
                 ${mapTagsHtml}
-                <button class="copy-btn">Copy</button>
+                <div class="action-buttons">
+                    <button class="copy-btn">Copy Link</button>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle">&#x22EE;</button>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item" data-action="copy-raw">Copy Raw Data</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         `;
 
+        // Event listeners for copy functionality
         const copyBtn = card.querySelector(".copy-btn");
         copyBtn.addEventListener('click', () => {
             navigator.clipboard.writeText(m.link).then(() => {
                 copyBtn.classList.add("copied");
                 copyBtn.textContent = "Copied!";
-                showPopup();
+                showPopup("Link copied!", false);
                 setTimeout(() => {
                     copyBtn.classList.remove("copied");
-                    copyBtn.textContent = "Copy";
+                    copyBtn.textContent = "Copy Link";
                 }, 1500);
             });
+        });
+
+        const dropdownToggle = card.querySelector(".dropdown-toggle");
+        const dropdownMenu = card.querySelector(".dropdown-menu");
+        dropdownToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            dropdownMenu.classList.toggle("show");
+        });
+
+        const copyRawDataBtn = card.querySelector(".dropdown-item[data-action='copy-raw']");
+        copyRawDataBtn.addEventListener('click', async (e) => {
+            e.preventDefault();
+            const originalText = copyRawDataBtn.textContent;
+            copyRawDataBtn.textContent = "Copying...";
+            
+            try {
+                const rawUrl = getRawUrl(m.link);
+                const response = await fetch(rawUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const rawData = await response.text();
+
+                const tempTextArea = document.createElement('textarea');
+                tempTextArea.style.position = 'absolute';
+                tempTextArea.style.left = '-9999px';
+                tempTextArea.value = rawData;
+                document.body.appendChild(tempTextArea);
+
+                tempTextArea.select();
+                tempTextArea.setSelectionRange(0, 99999);
+                document.execCommand('copy');
+                
+                document.body.removeChild(tempTextArea);
+                showPopup("Raw data copied!", false);
+            } catch (error) {
+                console.error("Error fetching or copying raw data:", error);
+                showPopup("Failed to copy raw data. The file might not exist or the link is invalid.", true);
+            } finally {
+                copyRawDataBtn.textContent = originalText;
+                dropdownMenu.classList.remove("show");
+            }
+        });
+
+        window.addEventListener('click', (e) => {
+            if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+                dropdownMenu.classList.remove("show");
+            }
         });
 
         mapList.appendChild(card);
@@ -532,7 +946,7 @@ addMap("https://gist.githubusercontent.com/xilpy/d6f6285bd7744837dfea55d88e520fc
 addMap("https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/Gardens%20-%20Grimoire", "Grimoire", "Gardens", "SheaNya", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/Demikuu/post-audio-update-maps/main/feel%20the%20same", "Feel The Same", "Gardens", "Demisnya", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/Demikuu/post-audio-update-maps/main/grimoire%20but%20jumps", "Grimoire", "Gardens", "Demisnya", "Brrrr", ["No Data"]);
-addMap("https://raw.githubusercontent.com/Faworee/Faworee_Custom_Maps/refs/heads/main/HR%20-%20EEYUH!.txt", "heeyuh!", "hr", "faworee", "Brrrr", ["No Data"]);
+addMap("https://raw.githubusercontent.com/Faworee/Faworee_Custom_Maps/refs/heads/main/HR%20-%20EEYUH!.txt", "eeyuh!", "hr", "faworee", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/JACK-Zer0!%20-%20Zipper", "Zipper", "JACK-Zer0!", "SheaNya", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/Demikuu/post-audio-update-maps/main/zipper", "Zipper", "JACK-Zer0!", "Demisnya", "Brrrr", ["No Data"]);
 addMap("https://raw.githubusercontent.com/xilpy/sacga/main/one%20day%20in%20your%20bed", "one day in your bed", "Jackuw", "Xilp", "Brrrr", ["No Data"]);
