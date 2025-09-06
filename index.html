@@ -928,16 +928,17 @@ h1 {
         loadingSpinner.style.display = 'none';
     }
 
-    function createMapCard(m) {
-        const card = document.createElement('div');
-        card.classList.add('map-card');
-        
-        let mapDifficulty = m.difficulty.toLowerCase();
-        if (m.difficulty === "No Data") {
-            mapDifficulty = "brrrr";
-        }
-        card.classList.add(mapDifficulty);
-let patternsHtml = '';
+function createMapCard(m) {
+    const card = document.createElement('div');
+    card.classList.add('map-card');
+    
+    let mapDifficulty = m.difficulty.toLowerCase();
+    if (m.difficulty === "No Data") {
+        mapDifficulty = "brrrr";
+    }
+    card.classList.add(mapDifficulty);
+
+    let patternsHtml = '';
     const hasPatterns = m.patterns && m.patterns.length > 0 && !(m.patterns.length === 1 && m.patterns[0] === "No Patterns");
 
     if (hasPatterns) {
@@ -959,31 +960,33 @@ let patternsHtml = '';
             </div>
         `;
     }
+    
+    // Escape single quotes in the link for the onclick attribute
+    const escapedLink = m.link.replace(/'/g, "\\'");
 
-        card.innerHTML = `
-            <div class="map-content">
-                <div class="map-artist">${m.artist}</div>
-                <div class="map-name"><a href="${m.link}" target="_blank">${m.mapName}</a></div>
-                <div class="map-mapper">Mapped by: ${m.mapper}</div>
-                <div class="map-difficulty">Difficulty: ${m.difficulty}</div>
-            </div>
-            <div class="map-footer">
-                ${patternsHtml}
-                <div class="action-buttons">
-                    <button class="copy-btn" onclick="copyLink('${m.link}', this)">Copy Link</button>
-                    <div class="dropdown">
-                        <button class="dropdown-toggle" onclick="toggleDropdown(this)">&#x22EE;</button>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" onclick="copyRawData('${m.link}')">Copy Raw Data</a>
-                        </div>
+    card.innerHTML = `
+        <div class="map-content">
+            <div class="map-artist">${m.artist}</div>
+            <div class="map-name"><a href="${m.link}" target="_blank">${m.mapName}</a></div>
+            <div class="map-mapper">Mapped by: ${m.mapper}</div>
+            <div class="map-difficulty">Difficulty: ${m.difficulty}</div>
+        </div>
+        <div class="map-footer">
+            ${patternsHtml}
+            <div class="action-buttons">
+                <button class="copy-btn" onclick="copyLink('${escapedLink}', this)">Copy Link</button>
+                <div class="dropdown">
+                    <button class="dropdown-toggle" onclick="toggleDropdown(this)">&#x22EE;</button>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item" onclick="copyRawData('${escapedLink}')">Copy Raw Data</a>
                     </div>
                 </div>
             </div>
-        `;
+        </div>
+    `;
 
-        return card;
-    }
-    
+    return card;
+}
     function createPatternCard(p) {
         const [downloadLink, title, artist, mapper, difficulty, patterns] = p;
         const card = document.createElement('div');
