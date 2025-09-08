@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -766,6 +767,49 @@ h1 {
     background-color: #dc3545;
 }
 
+/* Load More Button Styles */
+.load-more-container {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+    gap: 15px;
+}
+
+.load-more-btn {
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 15px 30px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
+}
+
+.load-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
+}
+
+.load-more-btn:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.scroll-indicator {
+    background: rgba(79, 172, 254, 0.1);
+    color: #4facfe;
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 0.9em;
+}
+
 @media (max-width: 768px) {
     .info-display {
         position: static;
@@ -857,6 +901,17 @@ h1 {
     .patterns-dropdown-menu ul {
         max-height: 100px;
     }
+
+    .load-more-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .load-more-btn {
+        width: 80%;
+        max-width: 300px;
+    }
 }
 </style>
 </head>
@@ -933,6 +988,12 @@ h1 {
 
 <div class="loading-spinner" id="loading-spinner"></div>
 <div id="map-list"></div>
+
+<div class="load-more-container" id="load-more-container">
+    <button id="load-more-btn" class="load-more-btn">Load More Maps</button>
+    <div class="scroll-indicator" id="scroll-indicator">Scroll down to auto-load more maps</div>
+</div>
+
 <div id="popup"></div>
 <div class="patterns-container" id="patterns-container">
 </div>
@@ -947,6 +1008,8 @@ h1 {
     let currentDisplayCount = 50;
     const LOAD_BATCH_SIZE = 50;
     let isLoading = false;
+    let infiniteScrollEnabled = true;
+    
     const searchBar = document.getElementById('search-bar');
     const mapList = document.getElementById('map-list');
     const sortToggle = document.getElementById('sort-toggle');
@@ -955,6 +1018,9 @@ h1 {
     const popup = document.getElementById('popup');
     const loadingSpinner = document.getElementById('loading-spinner');
     const patternsContainer = document.getElementById('patterns-container');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    const loadMoreContainer = document.getElementById('load-more-container');
+    const scrollIndicator = document.getElementById('scroll-indicator');
 
 function parseMapData(rawData) {
     if (!rawData || typeof rawData !== 'string') {
@@ -1001,13 +1067,78 @@ async function fetchMapData(url) {
     }
 }
 
+    // Infinite scroll functionality
+    function checkScroll() {
+        if (!infiniteScrollEnabled || isLoading) return;
+        
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+        
+        // Trigger load when user scrolls to within 200px of bottom
+        if (scrollTop + windowHeight >= documentHeight - 200) {
+            loadMoreMaps();
+        }
+    }
+
+    function loadMoreMaps() {
+        if (isLoading || currentDisplayCount >= filteredMaps.length) return;
+        
+        isLoading = true;
+        loadingSpinner.style.display = 'block';
+        loadMoreBtn.disabled = true;
+        loadMoreBtn.textContent = 'Loading...';
+        
+        // Simulate loading delay for better UX
+        setTimeout(() => {
+            const previousCount = currentDisplayCount;
+            currentDisplayCount = Math.min(currentDisplayCount + LOAD_BATCH_SIZE, filteredMaps.length);
+            
+            // Add new maps to the existing display
+            const fragment = document.createDocumentFragment();
+            for (let i = previousCount; i < currentDisplayCount; i++) {
+                const m = filteredMaps[i];
+                const card = createMapCard(m);
+                fragment.appendChild(card);
+            }
+            mapList.appendChild(fragment);
+            
+            updateLoadMoreButton();
+            isLoading = false;
+            loadingSpinner.style.display = 'none';
+        }, 300);
+    }
+
+    function updateLoadMoreButton() {
+        const remainingMaps = filteredMaps.length - currentDisplayCount;
+        
+        if (remainingMaps <= 0) {
+            loadMoreBtn.style.display = 'none';
+            scrollIndicator.textContent = `All ${filteredMaps.length} maps loaded`;
+        } else {
+            loadMoreBtn.style.display = 'block';
+            loadMoreBtn.disabled = false;
+            loadMoreBtn.textContent = `Load ${Math.min(LOAD_BATCH_SIZE, remainingMaps)} More Maps`;
+            scrollIndicator.textContent = `${remainingMaps} maps remaining - Scroll to auto-load`;
+        }
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', checkScroll);
+    
+    loadMoreBtn.addEventListener('click', () => {
+        if (!isLoading) {
+            loadMoreMaps();
+        }
+    });
+
     loadingSpinner.style.display = 'block';
     let searchTimeout;
 
     searchBar.addEventListener('input', () => {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
-            currentDisplayCount = 50;
+            currentDisplayCount = LOAD_BATCH_SIZE;
             filterAndRenderMaps();
         }, 300);
     });
@@ -1034,6 +1165,7 @@ async function fetchMapData(url) {
             } else {
                 selectedDifficulties = selectedDifficulties.filter(d => d !== difficulty);
             }
+            currentDisplayCount = LOAD_BATCH_SIZE;
             filterAndRenderMaps();
         });
     });
@@ -1049,6 +1181,7 @@ async function fetchMapData(url) {
             } else {
                 selectedPatterns = selectedPatterns.filter(p => p !== pattern);
             }
+            currentDisplayCount = LOAD_BATCH_SIZE;
             filterAndRenderMaps();
         });
     });
@@ -1056,6 +1189,7 @@ async function fetchMapData(url) {
     document.querySelectorAll('input[name="apm-filter"]').forEach(radio => {
         radio.addEventListener('change', () => {
             apmFilter = radio.value;
+            currentDisplayCount = LOAD_BATCH_SIZE;
             filterAndRenderMaps();
         });
     });
@@ -1068,10 +1202,12 @@ async function fetchMapData(url) {
             btn.classList.remove('active');
         });
         document.getElementById('apm-all').checked = true;
+        currentDisplayCount = LOAD_BATCH_SIZE;
         filterAndRenderMaps();
     });
 
     document.querySelector('.apply-filters').addEventListener('click', () => {
+        currentDisplayCount = LOAD_BATCH_SIZE;
         filterAndRenderMaps();
         filterMenu.classList.remove('show');
     });
@@ -1079,6 +1215,7 @@ async function fetchMapData(url) {
     sortToggle.addEventListener('click', () => {
         sortAscending = !sortAscending;
         sortToggle.textContent = sortAscending ? "Sort: Easy → Hard" : "Sort: Hard → Easy";
+        currentDisplayCount = LOAD_BATCH_SIZE;
         filterAndRenderMaps();
     });
 
@@ -1159,6 +1296,7 @@ async function fetchMapData(url) {
             fragment.appendChild(card);
         }
         mapList.appendChild(fragment);
+        updateLoadMoreButton();
         loadingSpinner.style.display = 'none';
     }
 
@@ -1307,8 +1445,6 @@ async function fetchMapData(url) {
             });
         }
     });
-
-
 
 async function loadMapData() {
     loadingSpinner.style.display = 'block';
@@ -1588,7 +1724,7 @@ const mapData = [
 ["https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/Latin%20Rumba","Latin Rumble","No Data","SheaNya","Logic",["Quantum","Streams","Jumps"],false],
 ["https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/refs/heads/main/luvbackpack%20-%20control%20(prod.%20shinjin)","control (prod. shinjin)","luvbackpack","SheaNya","Logic",["Quantum","Streams","Jumps","Stacks"],false],
 ["https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/Nstryder%20-%20Fight%20For%20The%20Present","Fight For the present","Nstryder","SheaNya","Logic",["Streams","Jumps"],false],
-["https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/Rutra%20-%20AAUGHHRutra","AAUGHH","Rutra","SheaNya","Logic",["Quantum","Streams","Jumps","Stacks"],false],
+["https://raw.githubusercontent.com/SheaNya/FinalizedSSMaps/main/Rutra%20-%20AAUGHH","AAUGHH","Rutra","SheaNya","Logic",["Quantum","Streams","Jumps","Stacks"],false],
 ["https://raw.githubusercontent.com/Trivynium/In-game-maps/main/Glow%20mind%20logic","Glow Mind","Rutra","SnivyTrueForm","Logic",["Quantum","Streams","Jumps"],false],
 ["https://raw.githubusercontent.com/Trivynium/In-game-maps/main/monday","Monday","Rutra","SnivyTrueForm","Logic",["Streams","Jumps","Spins"],false],
 ["https://raw.githubusercontent.com/Trivynium/In-game-maps/main/thursday","Thursday","Rutra","SnivyTrueForm","Logic",["No Data"],false],
