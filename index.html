@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,7 +10,7 @@
 <meta property="og:url" content="https://faworee.github.io/SoundSpaceCustoms/">
 <meta property="og:type" content="website">
 
-<title>Sound Space Custom Maps</title>
+<title>Sound Space Custom Maps - Enhanced</title>
 <style>
 body {
     background-color: #0f0f0f;
@@ -120,6 +119,7 @@ h1 {
     transition: transform 0.2s, box-shadow 0.3s;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
+
 #filter-toggle {
     background: linear-gradient(90deg, #17a2b8, #138496);
 }
@@ -127,6 +127,7 @@ h1 {
     transform: scale(1.05);
     box-shadow: 0 0 12px #138496;
 }
+
 #sort-toggle {
     background: linear-gradient(90deg, #28a745, #218838);
 }
@@ -142,8 +143,8 @@ h1 {
     left: 50%;
     transform: translateX(-50%);
     background-color: #222;
-    min-width: 300px;
-    max-width: 400px;
+    min-width: 20vw; 
+    max-width: 50vw; 
     box-shadow: 0px 8px 20px rgba(0,0,0,0.4);
     z-index: 1000;
     border-radius: 15px;
@@ -158,20 +159,98 @@ h1 {
 
 .filter-section {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .filter-section h3 {
     color: #4facfe;
     font-size: 1.1em;
     margin-bottom: 10px;
-    text-align: left;
 }
 
 .filter-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* New 2x2 grid layout for top filters */
+.filter-grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.filter-grid-container .filter-section {
+    margin-bottom: 0;
+}
+
+/* Duration and Notes filters in separate sections */
+.duration-filter-section, .notes-filter-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.duration-filter-section h3, .notes-filter-section h3 {
+    color: #4facfe;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.range-filters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+    margin-bottom: 20px;
+}
+
+.range-filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.textbox-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+.filter-textbox {
+    padding: 6px 10px;
+    border-radius: 15px;
+    border: 1px solid #444;
+    background-color: #1e1e1e;
+    color: white;
+    font-size: 0.85em;
+    width: 80px;
+    text-align: center;
+}
+
+.filter-textbox:focus {
+    outline: none;
+    border-color: #4facfe;
+    box-shadow: 0 0 5px rgba(79, 172, 254, 0.3);
+}
+
+.textbox-group span {
+    color: #ccc;
+    font-weight: bold;
 }
 
 .filter-button {
@@ -183,6 +262,7 @@ h1 {
     cursor: pointer;
     font-size: 0.9em;
     transition: all 0.2s;
+    flex-shrink: 0;
 }
 
 .filter-button:hover {
@@ -196,14 +276,23 @@ h1 {
     box-shadow: 0 0 8px #218838;
 }
 
-.apm-filter {
+/* Bottom filters in a single row layout */
+.bottom-filters-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 20px;
+}
+
+.apm-filter, .other-filters {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
 }
 
-.apm-option {
+.apm-option, .filter-option {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -211,12 +300,12 @@ h1 {
     padding: 4px 0;
 }
 
-.apm-option input[type="radio"] {
+.apm-option input[type="radio"], .filter-option input[type="checkbox"] {
     margin: 0;
     accent-color: #4facfe;
 }
 
-.apm-option label {
+.apm-option label, .filter-option label {
     font-size: 0.9em;
     cursor: pointer;
 }
@@ -237,6 +326,11 @@ h1 {
     cursor: pointer;
     font-size: 0.9em;
     transition: all 0.2s;
+}
+
+.clear-filters {
+    background-color: #dc3545;
+    color: white;
 }
 
 .clear-filters:hover {
@@ -582,61 +676,6 @@ h1 {
     background-color: #444;
 }
 
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropdown-toggle {
-    border-radius: 25px;
-    padding: 6px 12px;
-    cursor: pointer;
-    font-size: 0.85em;
-    transition: background 0.2s, transform 0.2s;
-    flex-shrink: 0;
-    border: none;
-    color: white;
-    background-color: #333;
-}
-.dropdown-toggle:hover {
-    background-color: #555;
-    transform: scale(1.05);
-}
-
-.dropdown-menu {
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    transform: translateX(50%);
-    display: none;
-    background-color: #222;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
-    z-index: 100;
-    margin-bottom: 5px;
-}
-
-.dropdown-menu.show {
-    display: block;
-}
-
-.dropdown-menu .dropdown-item {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 5px 10px;
-    background-color: #333;
-    border-radius: 5px;
-    font-size: 0.8em;
-    white-space: nowrap;
-    transition: background-color 0.2s;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: #444;
-}
-
 .no-data {
     color: #999;
     font-size: 0.8em;
@@ -673,67 +712,6 @@ h1 {
     100% { transform: rotate(360deg); }
 }
 
-.patterns-container {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;              
-    overflow-x: auto;    
-    overflow-y: hidden;
-    padding: 20px 10px;
-    scroll-snap-type: x mandatory; 
-}
-
-.patterns-container::-webkit-scrollbar {
-    height: 10px;
-}
-
-.patterns-container::-webkit-scrollbar-track {
-    background: #2a2a2a;
-    border-radius: 10px;
-}
-
-.patterns-container::-webkit-scrollbar-thumb {
-    background-color: #555;
-    border-radius: 10px;
-    border: 2px solid #2a2a2a;
-}
-
-.patterns-container::-webkit-scrollbar-thumb:hover {
-    background-color: #666;
-}
-
-.pattern-card {
-    flex: 0 0 250px;      
-    background-color: #1a1a1a;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    text-align: left;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    scroll-snap-align: start;
-}
-
-.pattern-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-}
-
-.pattern-card-difficulty {
-    font-size: 0.9em;
-    font-weight: bold;
-    padding: 5px 10px;
-    border-radius: 10px;
-    color: white;
-}
-
-.difficulty-Easy {
-    background-color: #28a745;
-}
-
-.difficulty-Normal {
-    background-color: #007bff;
-}
-
 .map-stats {
     display: flex;
     justify-content: center;
@@ -755,6 +733,7 @@ h1 {
     font-size: 0.85em;
     color: white;
 }
+
 .map-stat-item img {
     height: 16px;
     width: auto;
@@ -766,15 +745,7 @@ h1 {
     font-size: 1em;
     color: #00f2fe;
 }
-.difficulty-Hard {
-    background-color: #ffc107;
-}
 
-.difficulty-Expert {
-    background-color: #dc3545;
-}
-
-/* Load More Button Styles */
 .load-more-container {
     display: flex;
     justify-content: center;
@@ -818,13 +789,6 @@ h1 {
 }
 
 @media (max-width: 768px) {
-    .info-display {
-        position: static;
-        flex-direction: row;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-
     .header-container {
         flex-direction: column;
         gap: 15px;
@@ -855,6 +819,15 @@ h1 {
         top: 50%;
         max-height: 80vh;
         overflow-y: auto;
+    }
+
+    /* Mobile: Stack filters vertically */
+    .filter-grid-container, .range-filters-grid, .bottom-filters-grid {
+        display: block;
+    }
+
+    .range-filter-group {
+        margin-bottom: 15px;
     }
 
     #map-list {
@@ -888,21 +861,13 @@ h1 {
         justify-content: center;
     }
 
-    .copy-btn, .action-dropdown-toggle, .dropdown-toggle {
+    .copy-btn, .action-dropdown-toggle {
         font-size: 0.75em;
         padding: 5px 10px;
     }
 
     .filter-buttons {
         justify-content: center;
-    }
-
-    .filter-section h3 {
-        text-align: center;
-    }
-
-    .apm-filter {
-        align-items: center;
     }
 
     .patterns-dropdown-menu ul {
@@ -937,50 +902,82 @@ h1 {
     <div class="filter-dropdown">
         <button id="filter-toggle">Filters</button>
         <div id="filter-menu">
-            <div class="filter-section">
-                <h3>Difficulty</h3>
-                <div class="filter-buttons" id="difficulty-filters">
-                    <button class="filter-button" data-filter="Easy">Easy</button>
-                    <button class="filter-button" data-filter="Medium">Medium</button>
-                    <button class="filter-button" data-filter="Hard">Hard</button>
-                    <button class="filter-button" data-filter="Logic">Logic</button>
-                    <button class="filter-button" data-filter="Brrrr">Brrrr</button>
-                    <button class="filter-button" data-filter="Tasukete">Tasukete</button>
+            <div class="filter-grid-container">
+                <div class="filter-section">
+                    <h3>Difficulty</h3>
+                    <div class="filter-buttons" id="difficulty-filters">
+                        <button class="filter-button" data-filter="Easy">Easy</button>
+                        <button class="filter-button" data-filter="Medium">Medium</button>
+                        <button class="filter-button" data-filter="Hard">Hard</button>
+                        <button class="filter-button" data-filter="Logic">Logic</button>
+                        <button class="filter-button" data-filter="Brrrr">Brrrr</button>
+                        <button class="filter-button" data-filter="Tasukete">Tasukete</button>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Patterns</h3>
+                    <div class="filter-buttons" id="pattern-filters">
+                        <button class="filter-button" data-filter="Streams">Streams</button>
+                        <button class="filter-button" data-filter="Walls">Walls</button>
+                        <button class="filter-button" data-filter="Tech">Tech</button>
+                        <button class="filter-button" data-filter="Jumps">Jumps</button>
+                        <button class="filter-button" data-filter="Quantum">Quantum</button>
+                        <button class="filter-button" data-filter="Unconventional">Unconventional</button>
+                        <button class="filter-button" data-filter="Bursts">Bursts</button>
+                        <button class="filter-button" data-filter="Timing">Timing</button>
+                        <button class="filter-button" data-filter="Stacks">Stacks</button>
+                        <button class="filter-button" data-filter="Spins">Spins</button>
+                        <button class="filter-button" data-filter="Slides">Slides</button>
+                        <button class="filter-button" data-filter="Vibros">Vibros</button>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Duration Filter</h3>
+                    <div class="textbox-group">
+                        <input type="text" id="duration-min" placeholder="0:00" class="filter-textbox">
+                        <span>-</span>
+                        <input type="text" id="duration-max" placeholder="5:00" class="filter-textbox">
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Notes Filter</h3>
+                    <div class="textbox-group">
+                        <input type="number" id="notes-min" placeholder="0" class="filter-textbox">
+                        <span>-</span>
+                        <input type="number" id="notes-max" placeholder="10000" class="filter-textbox">
+                    </div>
                 </div>
             </div>
-            
-            <div class="filter-section">
-                <h3>Patterns</h3>
-                <div class="filter-buttons" id="pattern-filters">
-                    <button class="filter-button" data-filter="Streams">Streams</button>
-                    <button class="filter-button" data-filter="Walls">Walls</button>
-                    <button class="filter-button" data-filter="Tech">Tech</button>
-                    <button class="filter-button" data-filter="Jumps">Jumps</button>
-                    <button class="filter-button" data-filter="Quantum">Quantum</button>
-                    <button class="filter-button" data-filter="Unconventional">Unconventional</button>
-                    <button class="filter-button" data-filter="Bursts">Bursts</button>
-                    <button class="filter-button" data-filter="Timing">Timing</button>
-                    <button class="filter-button" data-filter="Stacks">Stacks</button>
-                    <button class="filter-button" data-filter="Spins">Spins</button>
-                    <button class="filter-button" data-filter="Slides">Slides</button>
-                    <button class="filter-button" data-filter="Vibros">Vibros</button>
+
+            <div class="bottom-filters-grid">
+                <div class="filter-section">
+                    <h3>APM Music Filter</h3>
+                    <div class="apm-filter">
+                        <div class="apm-option">
+                            <input type="radio" id="apm-all" name="apm-filter" value="all" checked>
+                            <label for="apm-all">All maps (APM + Normal)</label>
+                        </div>
+                        <div class="apm-option">
+                            <input type="radio" id="apm-only" name="apm-filter" value="only">
+                            <label for="apm-only">Only APM Music maps</label>
+                        </div>
+                        <div class="apm-option">
+                            <input type="radio" id="apm-none" name="apm-filter" value="none">
+                            <label for="apm-none">No APM Music maps</label>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="filter-section">
-                <h3>APM Music Filter</h3>
-                <div class="apm-filter">
-                    <div class="apm-option">
-                        <input type="radio" id="apm-all" name="apm-filter" value="all" checked>
-                        <label for="apm-all">All maps (APM + Normal)</label>
-                    </div>
-                    <div class="apm-option">
-                        <input type="radio" id="apm-only" name="apm-filter" value="only">
-                        <label for="apm-only">Only APM Music maps</label>
-                    </div>
-                    <div class="apm-option">
-                        <input type="radio" id="apm-none" name="apm-filter" value="none">
-                        <label for="apm-none">No APM Music maps</label>
+
+                <div class="filter-section">
+                    <h3>Other Filters</h3>
+                    <div class="other-filters">
+                        <div class="filter-option">
+                            <input type="checkbox" id="new-maps-only">
+                            <label for="new-maps-only">New Maps Only</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -991,6 +988,7 @@ h1 {
             </div>
         </div>
     </div>
+
     <button id="sort-toggle">Sort: Easy → Hard</button>
 </div>
 
@@ -1003,8 +1001,7 @@ h1 {
 </div>
 
 <div id="popup"></div>
-<div class="patterns-container" id="patterns-container">
-</div>
+
 <script>
     const difficultyOrder = ["Easy", "Medium", "Hard", "Logic", "Brrrr", "Tasukete"];
     let sortAscending = true;
@@ -1013,6 +1010,7 @@ h1 {
     let selectedDifficulties = [];
     let selectedPatterns = [];
     let apmFilter = "all";
+    let showNewMapsOnly = false;
     let currentDisplayCount = 50;
     const LOAD_BATCH_SIZE = 50;
     let isLoading = false;
@@ -1025,55 +1023,76 @@ h1 {
     const filterMenu = document.getElementById('filter-menu');
     const popup = document.getElementById('popup');
     const loadingSpinner = document.getElementById('loading-spinner');
-    const patternsContainer = document.getElementById('patterns-container');
     const loadMoreBtn = document.getElementById('load-more-btn');
     const loadMoreContainer = document.getElementById('load-more-container');
     const scrollIndicator = document.getElementById('scroll-indicator');
 
-function parseMapData(rawData) {
-    if (!rawData || typeof rawData !== 'string') {
-        return { duration: 0, noteCount: 0 };
-    }
-    const firstCommaIndex = rawData.indexOf(',');
-    if (firstCommaIndex === -1) {
-        return { duration: 0, noteCount: 0 };
-    }
-    const notesData = rawData.substring(firstCommaIndex + 1);
-    const noteArray = notesData.split(',');
-    const noteCount = noteArray.length;
-    if (noteCount === 0) {
-        return { duration: 0, noteCount: 0 };
-    }
-    const firstNote = noteArray[0];
-    const firstNoteParts = firstNote.split('|');
-    const startTime = parseFloat(firstNoteParts[2]);
-    const lastNote = noteArray[noteArray.length - 1];
-    const lastNoteParts = lastNote.split('|');
-    const endTime = parseFloat(lastNoteParts[2]);
-    const durationMilliseconds = endTime - startTime;
-    return { duration: Math.max(0, durationMilliseconds), noteCount: noteCount };
-}
+    // Range filter elements
+    const durationMinInput = document.getElementById('duration-min');
+    const durationMaxInput = document.getElementById('duration-max');
+    const notesMinInput = document.getElementById('notes-min');
+    const notesMaxInput = document.getElementById('notes-max');
+    const newMapsCheckbox = document.getElementById('new-maps-only');
 
-function formatDuration(milliseconds) {
-    if (milliseconds <= 0 || isNaN(milliseconds)) return "--:--";
-    const totalSeconds = Math.floor(milliseconds / 1000);
-    const mins = Math.floor(totalSeconds / 60);
-    const secs = totalSeconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-}
-
-async function fetchMapData(url) {
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+    function parseMapData(rawData) {
+        if (!rawData || typeof rawData !== 'string') {
+            return { duration: 0, noteCount: 0 };
         }
-        return await response.text();
-    } catch (error) {
-        console.error("Error fetching map data:", error);
-        return null;
+        const firstCommaIndex = rawData.indexOf(',');
+        if (firstCommaIndex === -1) {
+            return { duration: 0, noteCount: 0 };
+        }
+        const notesData = rawData.substring(firstCommaIndex + 1);
+        const noteArray = notesData.split(',');
+        const noteCount = noteArray.length;
+        if (noteCount === 0) {
+            return { duration: 0, noteCount: 0 };
+        }
+        const firstNote = noteArray[0];
+        const firstNoteParts = firstNote.split('|');
+        const startTime = parseFloat(firstNoteParts[2]);
+        const lastNote = noteArray[noteArray.length - 1];
+        const lastNoteParts = lastNote.split('|');
+        const endTime = parseFloat(lastNoteParts[2]);
+        const durationMilliseconds = endTime - startTime;
+        return { duration: Math.max(0, durationMilliseconds), noteCount: noteCount };
     }
-}
+
+    function formatDuration(milliseconds) {
+        if (milliseconds <= 0 || isNaN(milliseconds)) return "--:--";
+        const totalSeconds = Math.floor(milliseconds / 1000);
+        const mins = Math.floor(totalSeconds / 60);
+        const secs = totalSeconds % 60;
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+    function parseTimeToMilliseconds(timeString) {
+        if (!timeString || timeString === "") return null;
+        const parts = timeString.split(':');
+        if (parts.length !== 2) return null;
+        const mins = parseInt(parts[0]) || 0;
+        const secs = parseInt(parts[1]) || 0;
+        return (mins * 60 + secs) * 1000;
+    }
+
+    function matchesRangeFilter(value, minInput, maxInput) {
+        const minVal = minInput === null ? -Infinity : minInput;
+        const maxVal = maxInput === null ? Infinity : maxInput;
+        return value >= minVal && value <= maxVal;
+    }
+
+    async function fetchMapData(url) {
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.text();
+        } catch (error) {
+            console.error("Error fetching map data:", error);
+            return null;
+        }
+    }
 
     // Infinite scroll functionality
     function checkScroll() {
@@ -1162,6 +1181,29 @@ async function fetchMapData(url) {
         }
     });
 
+    // New Maps Checkbox
+    newMapsCheckbox.addEventListener('change', () => {
+        showNewMapsOnly = newMapsCheckbox.checked;
+        currentDisplayCount = LOAD_BATCH_SIZE;
+        filterAndRenderMaps();
+    });
+
+    // Sort Toggle
+    sortToggle.addEventListener('click', () => {
+        sortAscending = !sortAscending;
+        sortToggle.textContent = sortAscending ? "Sort: Easy → Hard" : "Sort: Hard → Easy";
+        currentDisplayCount = LOAD_BATCH_SIZE;
+        filterAndRenderMaps();
+    });
+
+    // Range filter input listeners
+    [durationMinInput, durationMaxInput, notesMinInput, notesMaxInput].forEach(input => {
+        input.addEventListener('input', () => {
+            currentDisplayCount = LOAD_BATCH_SIZE;
+            filterAndRenderMaps();
+        });
+    });
+
     document.querySelectorAll('#difficulty-filters .filter-button').forEach(button => {
         button.addEventListener('click', () => {
             const difficulty = button.dataset.filter;
@@ -1206,10 +1248,16 @@ async function fetchMapData(url) {
         selectedDifficulties = [];
         selectedPatterns = [];
         apmFilter = "all";
+        showNewMapsOnly = false;
         document.querySelectorAll('.filter-button.active').forEach(btn => {
             btn.classList.remove('active');
         });
         document.getElementById('apm-all').checked = true;
+        newMapsCheckbox.checked = false;
+        durationMinInput.value = '';
+        durationMaxInput.value = '';
+        notesMinInput.value = '';
+        notesMaxInput.value = '';
         currentDisplayCount = LOAD_BATCH_SIZE;
         filterAndRenderMaps();
     });
@@ -1218,13 +1266,6 @@ async function fetchMapData(url) {
         currentDisplayCount = LOAD_BATCH_SIZE;
         filterAndRenderMaps();
         filterMenu.classList.remove('show');
-    });
-
-    sortToggle.addEventListener('click', () => {
-        sortAscending = !sortAscending;
-        sortToggle.textContent = sortAscending ? "Sort: Easy → Hard" : "Sort: Hard → Easy";
-        currentDisplayCount = LOAD_BATCH_SIZE;
-        filterAndRenderMaps();
     });
 
     function showPopup(message, isError = false) {
@@ -1254,10 +1295,20 @@ async function fetchMapData(url) {
 
     function filterAndRenderMaps() {
         const searchText = searchBar.value.toLowerCase();
+        
+        // Get range filter values
+        const durationMin = parseTimeToMilliseconds(durationMinInput.value);
+        const durationMax = parseTimeToMilliseconds(durationMaxInput.value);
+        const notesMin = notesMinInput.value ? parseInt(notesMinInput.value) : null;
+        const notesMax = notesMaxInput.value ? parseInt(notesMaxInput.value) : null;
+        
         filteredMaps = maps.filter(m => {
-            const matchesSearch = m.mapName.toLowerCase().includes(searchText) || m.artist.toLowerCase().includes(searchText) || m.mapper.toLowerCase().includes(searchText);
+            const matchesSearch = m.mapName.toLowerCase().includes(searchText) || 
+                                m.artist.toLowerCase().includes(searchText) || 
+                                m.mapper.toLowerCase().includes(searchText);
             const matchesDifficulty = selectedDifficulties.length === 0 || selectedDifficulties.includes(m.difficulty);
             const matchesPatterns = selectedPatterns.length === 0 || selectedPatterns.every(pattern => m.patterns.includes(pattern));
+            
             const isApm = isApmMap(m.artist);
             let matchesApm = true;
             if (apmFilter === "only") {
@@ -1265,9 +1316,16 @@ async function fetchMapData(url) {
             } else if (apmFilter === "none") {
                 matchesApm = !isApm;
             }
-            return matchesSearch && matchesDifficulty && matchesPatterns && matchesApm;
+
+            const matchesDuration = matchesRangeFilter(m.duration || 0, durationMin, durationMax);
+            const matchesNotes = matchesRangeFilter(m.noteCount || 0, notesMin, notesMax);
+            const matchesNewFilter = !showNewMapsOnly || m.isNew;
+
+            return matchesSearch && matchesDifficulty && matchesPatterns && matchesApm && 
+                   matchesDuration && matchesNotes && matchesNewFilter;
         });
 
+        // Apply sorting
         filteredMaps.sort((a, b) => {
             const diffA = difficultyOrder.indexOf(a.difficulty);
             const diffB = difficultyOrder.indexOf(b.difficulty);
@@ -1376,21 +1434,6 @@ async function fetchMapData(url) {
         return card;
     }
 
-    function createPatternCard(p) {
-        const [downloadLink, title, artist, mapper, difficulty, patterns] = p;
-        const card = document.createElement('div');
-        card.className = 'pattern-card';
-        const difficultyClass = `difficulty-${difficulty.replace(/\s/g, '')}`;
-        card.innerHTML = `
-            <h2>${title}</h2>
-            <p><strong>Artist:</strong> ${artist}</p>
-            <p><strong>Mapper:</strong> ${mapper}</p>
-            <p><strong>Difficulty:</strong> <span class="pattern-card-difficulty ${difficultyClass}">${difficulty}</span></p>
-            <a href="${downloadLink}" class="download-link" download>Download Pattern</a>
-        `;
-        return card;
-    }
-
     function copyLink(link, button) {
         navigator.clipboard.writeText(link).then(() => {
             button.classList.add("copied");
@@ -1472,8 +1515,6 @@ async function loadMapData() {
     filterAndRenderMaps();
 }
 
-    window.onload = loadMapData;
-    
 const mapData = [
 ["https://raw.githubusercontent.com/Faworee/faworee_Converts_soundspacecustoms/refs/heads/main/alt-_pixenity_camellia_-_tera_io%20(1).txt","Tera I/O","Camellia","Pyxenity, Alt","Tasukete",["Quantum","Streams","Jumps","Spins","Offgrid"],false],
 ["https://raw.githubusercontent.com/SheaNya/converts/main/impaler2%20spoob%20not%20mine","A Miserable Pile Of Secrets (The Impaler II)","Nstryder","spoob","Tasukete",["Quantum","Streams","Jumps","Spins","Timing","Offgrid"],false],
@@ -1805,6 +1846,7 @@ document.addEventListener("DOMContentLoaded", loadMapData);
 </script>
 </body>
 </html>
+
 
 
 
