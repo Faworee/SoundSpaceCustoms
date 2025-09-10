@@ -180,7 +180,6 @@ h1 {
     width: 100%;
 }
 
-/* New 2x2 grid layout for top filters */
 .filter-grid-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -193,7 +192,6 @@ h1 {
     margin-bottom: 0;
 }
 
-/* Duration and Notes filters in separate sections */
 .duration-filter-section, .notes-filter-section {
     display: flex;
     flex-direction: column;
@@ -276,7 +274,6 @@ h1 {
     box-shadow: 0 0 8px #218838;
 }
 
-/* Bottom filters in a single row layout */
 .bottom-filters-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -821,7 +818,6 @@ h1 {
         overflow-y: auto;
     }
 
-    /* Mobile: Stack filters vertically */
     .filter-grid-container, .range-filters-grid, .bottom-filters-grid {
         display: block;
     }
@@ -1027,7 +1023,6 @@ h1 {
     const loadMoreContainer = document.getElementById('load-more-container');
     const scrollIndicator = document.getElementById('scroll-indicator');
 
-    // Range filter elements
     const durationMinInput = document.getElementById('duration-min');
     const durationMaxInput = document.getElementById('duration-max');
     const notesMinInput = document.getElementById('notes-min');
@@ -1094,7 +1089,6 @@ h1 {
         }
     }
 
-    // Infinite scroll functionality
     function checkScroll() {
         if (!infiniteScrollEnabled || isLoading) return;
         
@@ -1102,7 +1096,6 @@ h1 {
         const windowHeight = window.innerHeight;
         const documentHeight = document.documentElement.scrollHeight;
         
-        // Trigger load when user scrolls to within 200px of bottom
         if (scrollTop + windowHeight >= documentHeight - 200) {
             loadMoreMaps();
         }
@@ -1116,12 +1109,10 @@ h1 {
         loadMoreBtn.disabled = true;
         loadMoreBtn.textContent = 'Loading...';
         
-        // Simulate loading delay for better UX
         setTimeout(() => {
             const previousCount = currentDisplayCount;
             currentDisplayCount = Math.min(currentDisplayCount + LOAD_BATCH_SIZE, filteredMaps.length);
             
-            // Add new maps to the existing display
             const fragment = document.createDocumentFragment();
             for (let i = previousCount; i < currentDisplayCount; i++) {
                 const m = filteredMaps[i];
@@ -1150,7 +1141,6 @@ h1 {
         }
     }
 
-    // Event listeners
     window.addEventListener('scroll', checkScroll);
     
     loadMoreBtn.addEventListener('click', () => {
@@ -1181,14 +1171,12 @@ h1 {
         }
     });
 
-    // New Maps Checkbox
     newMapsCheckbox.addEventListener('change', () => {
         showNewMapsOnly = newMapsCheckbox.checked;
         currentDisplayCount = LOAD_BATCH_SIZE;
         filterAndRenderMaps();
     });
 
-    // Sort Toggle
     sortToggle.addEventListener('click', () => {
         sortAscending = !sortAscending;
         sortToggle.textContent = sortAscending ? "Sort: Easy → Hard" : "Sort: Hard → Easy";
@@ -1196,7 +1184,6 @@ h1 {
         filterAndRenderMaps();
     });
 
-    // Range filter input listeners
     [durationMinInput, durationMaxInput, notesMinInput, notesMaxInput].forEach(input => {
         input.addEventListener('input', () => {
             currentDisplayCount = LOAD_BATCH_SIZE;
@@ -1296,7 +1283,6 @@ h1 {
     function filterAndRenderMaps() {
         const searchText = searchBar.value.toLowerCase();
         
-        // Get range filter values
         const durationMin = parseTimeToMilliseconds(durationMinInput.value);
         const durationMax = parseTimeToMilliseconds(durationMaxInput.value);
         const notesMin = notesMinInput.value ? parseInt(notesMinInput.value) : null;
@@ -1325,7 +1311,6 @@ h1 {
                    matchesDuration && matchesNotes && matchesNewFilter;
         });
 
-        // Apply sorting
         filteredMaps.sort((a, b) => {
             const diffA = difficultyOrder.indexOf(a.difficulty);
             const diffB = difficultyOrder.indexOf(b.difficulty);
@@ -1846,6 +1831,7 @@ document.addEventListener("DOMContentLoaded", loadMapData);
 </script>
 </body>
 </html>
+
 
 
 
