@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Sound Space Custom Maps">
+    <meta property="og:description" content="Submit Sound Space Custom maps here!">
+    <meta property="og:image" content="">
+    <meta property="og:url" content="https://faworee.github.io/SoundSpaceCustoms/SubmitMaps">
+    <meta property="og:type" content="website">
+    <title>Sound Space Custom Map Submission</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0f0f0f;
+            color: white;
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, #222, #1a1a1a);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8);
+            border: 2px solid #555;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(79, 172, 254, 0.03) 50%, transparent 70%);
+            pointer-events: none;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .header p {
+            color: #ccc;
+            font-size: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 12px;
+            color: #4facfe;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="url"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #555;
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #1e1e1e, #2a2a2a);
+            color: white;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="url"]:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4facfe;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3), 
+                        0 0 20px rgba(79, 172, 254, 0.3);
+            background: linear-gradient(135deg, #252525, #303030);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+            font-family: Arial, sans-serif;
+        }
+
+        .form-group select {
+            cursor: pointer;
+        }
+
+        .form-group select option {
+            background: #1e1e1e;
+            color: white;
+        }
+
+        .patterns-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .pattern-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border-radius: 12px;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pattern-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 172, 254, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .pattern-item:hover {
+            border-color: #4facfe;
+            box-shadow: 0 4px 15px rgba(79, 172, 254, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .pattern-item:hover::before {
+            left: 100%;
+        }
+
+        .pattern-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.3);
+            accent-color: #4facfe;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pattern-item label {
+            margin: 0;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(79, 172, 254, 0.4);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.6);
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .submit-btn:disabled {
+            background: linear-gradient(90deg, #333, #444);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .submit-btn:disabled::before {
+            display: none;
+        }
+
+        .required {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #dc3545, #c82333);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .rate-limit-message {
+            background: linear-gradient(135deg, #ffc107, #ff8f00);
+            color: #000;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-section {
+            background: rgba(79, 172, 254, 0.05);
+            border: 1px solid rgba(79, 172, 254, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #4facfe, #00f2fe);
+            border-radius: 2px;
+        }
+
+        .section-title {
+            color: #4facfe;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-left: 15px;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon::after {
+            content: '';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .input-with-icon input:focus + *::after,
+        .input-with-icon select:focus + *::after {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            .container {
+                padding: 25px;
+                border-radius: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .patterns-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .submit-btn {
+                padding: 15px 30px;
+                font-size: 1.1rem;
+                letter-spacing: 1px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form-group input[type="text"],
+            .form-group input[type="url"],
+            .form-group select,
+            .form-group textarea {
+                padding: 12px 15px;
+            }
+            
+            .pattern-item {
+                padding: 10px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Sound Space Custom Map</h1>
+            <p>Submit your custom map to the community</p>
+        </div>
+
+        <div id="successMessage" class="success-message">
+            Map submitted successfully!
+        </div>
+
+        <div id="errorMessage" class="error-message">
+            Please fill in all required fields.
+        </div>
+
+        <div id="rateLimitMessage" class="rate-limit-message">
+            Please wait before submitting another map. Rate limit in effect.
+        </div>
+
+        <form id="mapForm">
+            <div class="form-section">
+                <div class="section-title">Map Information</div>
+                
+                <div class="form-group">
+                    <label for="githubLink">Github Raw Link <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <input type="url" id="githubLink" name="githubLink" required 
+                               placeholder="https://raw.githubusercontent.com/...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mapName">Map Name <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <input type="text" id="mapName" name="mapName" required 
+                               placeholder="Enter map name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mapArtist">Map Artist <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <input type="text" id="mapArtist" name="mapArtist" required 
+                               placeholder="Enter artist name">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="mapper">Mapper <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <input type="text" id="mapper" name="mapper" required 
+                               placeholder="Enter mapper name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">Difficulty & Patterns</div>
+                
+                <div class="form-group">
+                    <label for="difficulty">Difficulty <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <select id="difficulty" name="difficulty" required>
+                            <option value="">Select Difficulty</option>
+                            <option value="Tasukete">Tasukete</option>
+                            <option value="Brrr">Brrr</option>
+                            <option value="Logic">Logic</option>
+                            <option value="Hard">Hard</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Easy">Easy</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Patterns <span class="required">*</span></label>
+                    <div class="patterns-container">
+                        <div class="pattern-item">
+                            <input type="checkbox" id="streams" name="patterns" value="Streams">
+                            <label for="streams">Streams</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="walls" name="patterns" value="Walls">
+                            <label for="walls">Walls</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="tech" name="patterns" value="Tech">
+                            <label for="tech">Tech</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="jumps" name="patterns" value="Jumps">
+                            <label for="jumps">Jumps</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="quantum" name="patterns" value="Quantum">
+                            <label for="quantum">Quantum</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="unconventional" name="patterns" value="Unconventional">
+                            <label for="unconventional">Unconventional</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="bursts" name="patterns" value="Bursts">
+                            <label for="bursts">Bursts</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="timing" name="patterns" value="Timing">
+                            <label for="timing">Timing</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="stacks" name="patterns" value="Stacks">
+                            <label for="stacks">Stacks</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="spins" name="patterns" value="Spins">
+                            <label for="spins">Spins</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="slides" name="patterns" value="Slides">
+                            <label for="slides">Slides</label>
+                        </div>
+                        <div class="pattern-item">
+                            <input type="checkbox" id="vibros" name="patterns" value="Vibros">
+                            <label for="vibros">Vibros</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <div class="section-title">Additional Information</div>
+                
+                <div class="form-group">
+                    <label for="additionalInfo">Additional Information</label>
+                    <textarea id="additionalInfo" name="additionalInfo" 
+                              placeholder="Any additional notes or information about the map..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Send Map</button>
+        </form>
+    </div>
+
+    <script>
+        const RATE_LIMIT_TIME = 30000;
+        let rateLimitStorage = {};
+
+        function getClientIP() {
+            return 'anonymous-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
+        }
+
+        function isRateLimited(clientId) {
+            const now = Date.now();
+            if (rateLimitStorage[clientId] && (now - rateLimitStorage[clientId]) < RATE_LIMIT_TIME) {
+                return true;
+            }
+            return false;
+        }
+
+        function setRateLimit(clientId) {
+            rateLimitStorage[clientId] = Date.now();
+        }
+
+        function getRemainingTime(clientId) {
+            const now = Date.now();
+            const timeLeft = RATE_LIMIT_TIME - (now - rateLimitStorage[clientId]);
+            return Math.ceil(timeLeft / 1000);
+        }
+
+        document.getElementById('mapForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.querySelector('.submit-btn');
+            const successMsg = document.getElementById('successMessage');
+            const errorMsg = document.getElementById('errorMessage');
+            const rateLimitMsg = document.getElementById('rateLimitMessage');
+            const clientId = getClientIP();
+            
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            rateLimitMsg.style.display = 'none';
+            
+            if (isRateLimited(clientId)) {
+                const timeLeft = getRemainingTime(clientId);
+                rateLimitMsg.style.display = 'block';
+                rateLimitMsg.textContent = `Please wait ${timeLeft} seconds before submitting another map.`;
+                return;
+            }
+            
+            const formData = new FormData(this);
+            const githubLink = formData.get('githubLink');
+            const mapName = formData.get('mapName');
+            const mapArtist = formData.get('mapArtist');
+            const mapper = formData.get('mapper');
+            const difficulty = formData.get('difficulty');
+            const additionalInfo = formData.get('additionalInfo');
+            
+            const patterns = [];
+            const patternCheckboxes = document.querySelectorAll('input[name="patterns"]:checked');
+            patternCheckboxes.forEach(checkbox => {
+                patterns.push(checkbox.value);
+            });
+            
+            if (!githubLink || !mapName || !mapArtist || !mapper || !difficulty || patterns.length === 0) {
+                errorMsg.style.display = 'block';
+                errorMsg.textContent = 'Please fill in all required fields and select at least one pattern.';
+                return;
+            }
+            
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            const formattedData = `["${githubLink}","${mapName}","${mapArtist}","${mapper}","${difficulty}",${JSON.stringify(patterns)},false]`;
+            
+            const embed = {
+                title: "New Sound Space Custom Map Submission",
+                color: 0x4facfe,
+                fields: [
+                    {
+                        name: "GitHub Raw Link",
+                        value: `\`\`\`${githubLink}\`\`\``,
+                        inline: false
+                    },
+                    {
+                        name: "Map Name",
+                        value: mapName,
+                        inline: true
+                    },
+                    {
+                        name: "Artist",
+                        value: mapArtist,
+                        inline: true
+                    },
+                    {
+                        name: "Mapper",
+                        value: mapper,
+                        inline: true
+                    },
+                    {
+                        name: "Difficulty",
+                        value: difficulty,
+                        inline: true
+                    },
+                    {
+                        name: "Patterns",
+                        value: patterns.join(", "),
+                        inline: true
+                    },
+                    {
+                        name: "Formatted Data",
+                        value: `\`\`\`json\n${formattedData}\`\`\``,
+                        inline: false
+                    }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: {
+                    text: "Sound Space Custom Map Submission"
+                }
+            };
+            
+            if (additionalInfo) {
+                embed.fields.push({
+                    name: "Additional Information",
+                    value: additionalInfo,
+                    inline: false
+                });
+            }
+            
+            const webhookPayload = {
+                content: "<@1275493052743684233>",
+                embeds: [embed]
+            };
+            
+            try {
+                const response = await fetch('https://discord.com/api/webhooks/1417259456848461887/UAbqF5GWsMaPUyOWH-VUG9Xn8O2P1NMY2lOHnNCu_gwIQDo8k9mEFSvtuWsi7v524ovo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(webhookPayload)
+                });
+                
+                if (response.ok) {
+                    setRateLimit(clientId);
+                    successMsg.style.display = 'block';
+                    this.reset();
+                } else {
+                    throw new Error('Failed to send webhook');
+                }
+            } catch (error) {
+                errorMsg.style.display = 'block';
+                errorMsg.textContent = 'Failed to submit map. Please try again.';
+                console.error('Error:', error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Map';
+            }
+        });
+    </script>
+</body>
+</html>
