@@ -1056,7 +1056,14 @@ h1 {
     async function loadMapDataFromJSON() {
         try {
             loadingSpinner.style.display = 'block';
-            const response = await fetch('Mapdata.json');
+            const timestamp = new Date().getTime();
+            const response = await fetch(`Mapdata.json?v=${timestamp}`, {
+                cache: 'no-cache',
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                }
+            });
             
             if (!response.ok) {
                 throw new Error(`Failed to load map data: ${response.status} ${response.statusText}`);
@@ -1120,7 +1127,6 @@ h1 {
         } catch (error) {
             console.error('Error loading map data:', error);
             loadingSpinner.style.display = 'none';
-            
             mapList.innerHTML = `
                 <div class="error-message">
                     <h3>Failed to Load Map Data</h3>
@@ -1136,6 +1142,8 @@ h1 {
             `;
         }
     }
+
+    setInterval(loadMapDataFromJSON, 60000);
 
     function parseMapData(rawData) {
         if (!rawData || typeof rawData !== 'string') {
@@ -1589,7 +1597,10 @@ h1 {
         }
     });
 
-    document.addEventListener("DOMContentLoaded", loadMapDataFromJSON);
+    document.addEventListener("DOMContentLoaded", () => {
+        loadMapDataFromJSON();
+        setInterval(loadMapDataFromJSON, 60000);
+    });
 </script>
 </body>
 </html>
