@@ -37,6 +37,7 @@ body {
     width: 100%;
     max-width: 1200px;
     margin: 0 auto 30px;
+    position: relative;
 }
 
 .header-button {
@@ -68,12 +69,42 @@ body {
     box-shadow: 0 6px 15px rgba(26, 188, 156, 0.5);
 }
 
+.performance-toggle {
+    position: absolute;
+    right: 0;
+    top: -40px;
+    background: rgba(79, 172, 254, 0.2);
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    color: #4facfe;
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85em;
+    transition: all 0.3s ease;
+}
+
+.performance-toggle:hover {
+    background: rgba(79, 172, 254, 0.3);
+    transform: scale(1.05);
+}
+
+.performance-toggle.active {
+    background: linear-gradient(90deg, #4facfe, #00f2fe);
+    color: white;
+}
+
 h1 {
     font-size: 3em;
     background: linear-gradient(90deg, #4facfe, #00f2fe);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 30px;
+}
+
+.low-quality h1 {
+    background: none;
+    color: #4facfe;
+    -webkit-text-fill-color: initial;
 }
 
 #search-container {
@@ -99,9 +130,20 @@ h1 {
     transition: box-shadow 0.3s;
 }
 
+.low-quality #search-bar {
+    box-shadow: none;
+    border: 1px solid #444;
+    transition: none;
+}
+
 #search-bar:focus {
     outline: none;
     box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.3), 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.low-quality #search-bar:focus {
+    box-shadow: none;
+    border-color: #4facfe;
 }
 
 .filter-dropdown {
@@ -120,20 +162,48 @@ h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
+.low-quality #filter-toggle, .low-quality #sort-toggle {
+    transition: none;
+    box-shadow: none;
+    border: 1px solid #444;
+}
+
 #filter-toggle {
     background: linear-gradient(90deg, #17a2b8, #138496);
 }
+
+.low-quality #filter-toggle {
+    background: #17a2b8;
+}
+
 #filter-toggle:hover {
     transform: scale(1.05);
     box-shadow: 0 0 12px #138496;
 }
 
+.low-quality #filter-toggle:hover {
+    transform: none;
+    box-shadow: none;
+    background: #138496;
+}
+
 #sort-toggle {
     background: linear-gradient(90deg, #28a745, #218838);
 }
+
+.low-quality #sort-toggle {
+    background: #28a745;
+}
+
 #sort-toggle:hover {
     transform: scale(1.05);
     box-shadow: 0 0 12px #218838;
+}
+
+.low-quality #sort-toggle:hover {
+    transform: none;
+    box-shadow: none;
+    background: #218838;
 }
 
 #filter-menu {
@@ -251,6 +321,10 @@ h1 {
     box-shadow: 0 0 5px rgba(79, 172, 254, 0.3);
 }
 
+.low-quality .filter-textbox:focus {
+    box-shadow: none;
+}
+
 .textbox-group span {
     color: #ccc;
     font-weight: bold;
@@ -268,15 +342,28 @@ h1 {
     flex-shrink: 0;
 }
 
+.low-quality .filter-button {
+    transition: none;
+}
+
 .filter-button:hover {
     background-color: #444;
     box-shadow: 0 0 8px rgba(255,255,255,0.2);
+}
+
+.low-quality .filter-button:hover {
+    box-shadow: none;
 }
 
 .filter-button.active {
     background: linear-gradient(90deg, #28a745, #218838);
     color: white;
     box-shadow: 0 0 8px #218838;
+}
+
+.low-quality .filter-button.active {
+    background: #28a745;
+    box-shadow: none;
 }
 
 .bottom-filters-grid {
@@ -330,6 +417,10 @@ h1 {
     transition: all 0.2s;
 }
 
+.low-quality .clear-filters, .low-quality .apply-filters {
+    transition: none;
+}
+
 .clear-filters {
     background-color: #dc3545;
     color: white;
@@ -358,6 +449,10 @@ h1 {
     align-items: stretch;
 }
 
+.low-quality #map-list {
+    gap: 15px;
+}
+
 .map-card {
     position: relative;
     border-radius: 15px;
@@ -376,11 +471,27 @@ h1 {
     z-index: 1;
 }
 
+.low-quality .map-card {
+    box-shadow: none;
+    transition: none;
+    background: #222;
+    border-radius: 10px;
+    min-height: 180px;
+    padding: 15px;
+}
+
 .map-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.8);
     border: 2px solid #00f2fe;
     background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+}
+
+.low-quality .map-card:hover {
+    transform: none;
+    box-shadow: none;
+    background: #333;
+    border-color: #4facfe;
 }
 
 .new-tag {
@@ -398,6 +509,13 @@ h1 {
     animation: gradientShift 3s ease-in-out infinite, pulse 2s ease-in-out infinite;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.low-quality .new-tag {
+    background: #ff6b6b;
+    animation: none;
+    box-shadow: none;
+    text-shadow: none;
 }
 
 @keyframes gradientShift {
@@ -446,10 +564,18 @@ h1 {
     transition: color 0.2s;
 }
 
+.low-quality .map-name {
+    transition: none;
+}
+
 .map-name a {
     color: #4facfe;
     text-decoration: none;
     transition: color 0.2s;
+}
+
+.low-quality .map-name a {
+    transition: none;
 }
 
 .map-name a:hover {
@@ -482,6 +608,11 @@ h1 {
     white-space: nowrap;
 }
 
+.low-quality .map-duration, .low-quality .map-notes {
+    background: rgba(79, 172, 254, 0.05);
+    border-radius: 5px;
+}
+
 .map-footer {
     display: flex;
     flex-direction: row;
@@ -509,6 +640,10 @@ h1 {
     white-space: nowrap;
 }
 
+.low-quality .map-tags span {
+    border-radius: 6px;
+}
+
 .action-buttons {
     display: flex;
     gap: 5px;
@@ -528,9 +663,18 @@ h1 {
     background-color: #007bff;
 }
 
+.low-quality .copy-btn {
+    transition: none;
+    border-radius: 15px;
+}
+
 .copy-btn:hover {
     background-color: #0056b3;
     transform: scale(1.05);
+}
+
+.low-quality .copy-btn:hover {
+    transform: none;
 }
 
 .copy-btn.copied {
@@ -554,9 +698,18 @@ h1 {
     background-color: #333;
 }
 
+.low-quality .patterns-dropdown-toggle {
+    transition: none;
+    border-radius: 15px;
+}
+
 .patterns-dropdown-toggle:hover {
     background-color: #555;
     transform: scale(1.05);
+}
+
+.low-quality .patterns-dropdown-toggle:hover {
+    transform: none;
 }
 
 .patterns-dropdown-menu {
@@ -573,6 +726,11 @@ h1 {
     margin-bottom: 5px;
     min-width: 100px;
     max-width: 150px;
+}
+
+.low-quality .patterns-dropdown-menu {
+    box-shadow: none;
+    border: 1px solid #444;
 }
 
 .patterns-dropdown-menu.show {
@@ -639,9 +797,18 @@ h1 {
     background-color: #333;
 }
 
+.low-quality .action-dropdown-toggle {
+    transition: none;
+    border-radius: 15px;
+}
+
 .action-dropdown-toggle:hover {
     background-color: #555;
     transform: scale(1.05);
+}
+
+.low-quality .action-dropdown-toggle:hover {
+    transform: none;
 }
 
 .action-dropdown-menu {
@@ -658,6 +825,11 @@ h1 {
     margin-bottom: 5px;
 }
 
+.low-quality .action-dropdown-menu {
+    box-shadow: none;
+    border: 1px solid #444;
+}
+
 .action-dropdown-menu.show {
     display: block;
 }
@@ -672,6 +844,10 @@ h1 {
     font-size: 0.8em;
     white-space: nowrap;
     transition: background-color 0.2s;
+}
+
+.low-quality .action-dropdown-menu .dropdown-item {
+    transition: none;
 }
 
 .action-dropdown-menu .dropdown-item:hover {
@@ -736,11 +912,22 @@ h1 {
     color: white;
 }
 
+.low-quality .map-stat-item {
+    background: #1a1a1a;
+    box-shadow: none;
+    border-radius: 15px;
+    border: 1px solid rgba(79, 172, 254, 0.3);
+}
+
 .map-stat-item img {
     height: 16px;
     width: auto;
     filter: drop-shadow(0 0 2px #fff);
     vertical-align: middle;
+}
+
+.low-quality .map-stat-item img {
+    filter: none;
 }
 
 .map-stat-item span {
@@ -768,9 +955,22 @@ h1 {
     box-shadow: 0 4px 15px rgba(79, 172, 254, 0.4);
 }
 
+.low-quality .load-more-btn {
+    background: #4facfe;
+    box-shadow: none;
+    transition: none;
+    border-radius: 15px;
+}
+
 .load-more-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 25px rgba(79, 172, 254, 0.6);
+}
+
+.low-quality .load-more-btn:hover {
+    transform: none;
+    box-shadow: none;
+    background: #00f2fe;
 }
 
 .load-more-btn:disabled {
@@ -790,6 +990,10 @@ h1 {
     font-size: 0.9em;
 }
 
+.low-quality .scroll-indicator {
+    border-radius: 10px;
+}
+
 .error-message {
     background: rgba(220, 53, 69, 0.1);
     color: #dc3545;
@@ -805,6 +1009,13 @@ h1 {
     .header-container {
         flex-direction: column;
         gap: 15px;
+    }
+
+    .performance-toggle {
+        top: -30px;
+        right: 10px;
+        font-size: 0.75em;
+        padding: 6px 12px;
     }
 
     #search-container {
@@ -909,6 +1120,7 @@ h1 {
 
 <div class="header-container">
     <a href="/SoundSpaceCustoms/Info" class="header-button info-button">Info</a>
+    <button class="performance-toggle" id="performance-toggle">Low Quality Mode</button>
     <a href="https://faworee.github.io/SoundSpaceCustoms/SubmitMaps" class="header-button discord-button">Submit Map</a>
 </div>
 
@@ -1023,6 +1235,7 @@ h1 {
 <div id="popup"></div>
 
 <script>
+    let isLowQualityMode = false;
     const difficultyOrder = ["Easy", "Medium", "Hard", "Logic", "Brrrr", "Tasukete"];
     let sortAscending = true;
     let maps = [];
@@ -1036,6 +1249,8 @@ h1 {
     let isLoading = false;
     let infiniteScrollEnabled = true;
     
+    const mapDataCache = new Map();
+    
     const searchBar = document.getElementById('search-bar');
     const mapList = document.getElementById('map-list');
     const sortToggle = document.getElementById('sort-toggle');
@@ -1046,6 +1261,7 @@ h1 {
     const loadMoreBtn = document.getElementById('load-more-btn');
     const loadMoreContainer = document.getElementById('load-more-container');
     const scrollIndicator = document.getElementById('scroll-indicator');
+    const performanceToggle = document.getElementById('performance-toggle');
 
     const durationMinInput = document.getElementById('duration-min');
     const durationMaxInput = document.getElementById('duration-max');
@@ -1053,10 +1269,36 @@ h1 {
     const notesMaxInput = document.getElementById('notes-max');
     const newMapsCheckbox = document.getElementById('new-maps-only');
 
+    performanceToggle.addEventListener('click', () => {
+        isLowQualityMode = !isLowQualityMode;
+        document.body.classList.toggle('low-quality', isLowQualityMode);
+        performanceToggle.classList.toggle('active', isLowQualityMode);
+        performanceToggle.textContent = isLowQualityMode ? 'High Quality Mode' : 'Low Quality Mode';
+        
+        try {
+            localStorage.setItem('soundSpaceLowQuality', isLowQualityMode.toString());
+        } catch (e) {
+            console.warn('Could not save performance preference:', e);
+        }
+        
+        if (maps.length > 0) {
+            renderMaps();
+        }
+    });
+
+    try {
+        const savedPreference = localStorage.getItem('soundSpaceLowQuality');
+        if (savedPreference === 'true') {
+            performanceToggle.click();
+        }
+    } catch (e) {
+        console.warn('Could not load performance preference:', e);
+    }
+
     async function loadMapDataFromJSON() {
         try {
             loadingSpinner.style.display = 'block';
-            const timestamp = new Date().getTime();
+            const timestamp = Date.now();
             const response = await fetch(`Mapdata.json?v=${timestamp}`, {
                 cache: 'no-cache',
                 headers: {
@@ -1075,45 +1317,80 @@ h1 {
                 throw new Error('Invalid JSON format: Expected an array of maps');
             }
             
-            const mapsWithStats = await Promise.all(mapData.map(async (mapArray) => {
-                if (!Array.isArray(mapArray) || mapArray.length < 6) {
-                    console.warn('Invalid map data format:', mapArray);
-                    return null;
-                }
-                
-                const [link, mapName, artist, mapper, difficulty, patterns, isNew] = mapArray;
-                const rawLink = getRawUrl(link);
-                
-                try {
-                    const rawData = await fetchMapData(rawLink);
-                    const stats = rawData ? parseMapData(rawData) : { duration: undefined, noteCount: undefined };
+            const BATCH_SIZE = isLowQualityMode ? 20 : 10;
+            const mapsWithStats = [];
+            
+            for (let i = 0; i < mapData.length; i += BATCH_SIZE) {
+                const batch = mapData.slice(i, i + BATCH_SIZE);
+                const batchPromises = batch.map(async (mapArray) => {
+                    if (!Array.isArray(mapArray) || mapArray.length < 6) {
+                        console.warn('Invalid map data format:', mapArray);
+                        return null;
+                    }
                     
-                    return {
-                        link: link,
-                        mapName: mapName,
-                        artist: artist,
-                        mapper: mapper,
-                        difficulty: difficulty,
-                        patterns: patterns,
-                        isNew: isNew || false,
-                        duration: stats.duration,
-                        noteCount: stats.noteCount
-                    };
-                } catch (error) {
-                    console.error("Error fetching map data for link:", rawLink, error);
-                    return {
-                        link: link,
-                        mapName: mapName,
-                        artist: artist,
-                        mapper: mapper,
-                        difficulty: difficulty,
-                        patterns: patterns,
-                        isNew: isNew || false,
-                        duration: undefined,
-                        noteCount: undefined
-                    };
+                    const [link, mapName, artist, mapper, difficulty, patterns, isNew] = mapArray;
+                    
+                    if (isLowQualityMode) {
+                        return {
+                            link: link,
+                            mapName: mapName,
+                            artist: artist,
+                            mapper: mapper,
+                            difficulty: difficulty,
+                            patterns: patterns,
+                            isNew: isNew || false,
+                            duration: undefined,
+                            noteCount: undefined
+                        };
+                    }
+                    
+                    const rawLink = getRawUrl(link);
+                    
+                    try {
+                        let rawData = mapDataCache.get(rawLink);
+                        if (!rawData) {
+                            rawData = await fetchMapData(rawLink);
+                            if (rawData) {
+                                mapDataCache.set(rawLink, rawData);
+                            }
+                        }
+                        
+                        const stats = rawData ? parseMapData(rawData) : { duration: undefined, noteCount: undefined };
+                        
+                        return {
+                            link: link,
+                            mapName: mapName,
+                            artist: artist,
+                            mapper: mapper,
+                            difficulty: difficulty,
+                            patterns: patterns,
+                            isNew: isNew || false,
+                            duration: stats.duration,
+                            noteCount: stats.noteCount
+                        };
+                    } catch (error) {
+                        console.error("Error fetching map data for link:", rawLink, error);
+                        return {
+                            link: link,
+                            mapName: mapName,
+                            artist: artist,
+                            mapper: mapper,
+                            difficulty: difficulty,
+                            patterns: patterns,
+                            isNew: isNew || false,
+                            duration: undefined,
+                            noteCount: undefined
+                        };
+                    }
+                });
+                
+                const batchResults = await Promise.all(batchPromises);
+                mapsWithStats.push(...batchResults);
+                
+                if (i + BATCH_SIZE < mapData.length) {
+                    await new Promise(resolve => setTimeout(resolve, isLowQualityMode ? 50 : 100));
                 }
-            }));
+            }
             
             maps = mapsWithStats.filter(map => map !== null);
             
@@ -1138,35 +1415,45 @@ h1 {
                         <li>Your web server allows loading local JSON files</li>
                     </ul>
                     <p>If running locally, you may need to serve this through a web server rather than opening the HTML file directly.</p>
+                    <button onclick="location.reload()" style="margin-top: 15px; padding: 10px 20px; background: #4facfe; color: white; border: none; border-radius: 5px; cursor: pointer;">Retry</button>
                 </div>
             `;
         }
     }
 
-    setInterval(loadMapDataFromJSON, 60000);
-
     function parseMapData(rawData) {
         if (!rawData || typeof rawData !== 'string') {
             return { duration: 0, noteCount: 0 };
         }
+        
         const firstCommaIndex = rawData.indexOf(',');
         if (firstCommaIndex === -1) {
             return { duration: 0, noteCount: 0 };
         }
+        
         const notesData = rawData.substring(firstCommaIndex + 1);
         const noteArray = notesData.split(',');
         const noteCount = noteArray.length;
+        
         if (noteCount === 0) {
             return { duration: 0, noteCount: 0 };
         }
-        const firstNote = noteArray[0];
-        const firstNoteParts = firstNote.split('|');
-        const startTime = parseFloat(firstNoteParts[2]);
-        const lastNote = noteArray[noteArray.length - 1];
-        const lastNoteParts = lastNote.split('|');
-        const endTime = parseFloat(lastNoteParts[2]);
-        const durationMilliseconds = endTime - startTime;
-        return { duration: Math.max(0, durationMilliseconds), noteCount: noteCount };
+        
+        try {
+            const firstNote = noteArray[0];
+            const firstNoteParts = firstNote.split('|');
+            const startTime = parseFloat(firstNoteParts[2]) || 0;
+            
+            const lastNote = noteArray[noteArray.length - 1];
+            const lastNoteParts = lastNote.split('|');
+            const endTime = parseFloat(lastNoteParts[2]) || 0;
+            
+            const durationMilliseconds = endTime - startTime;
+            return { duration: Math.max(0, durationMilliseconds), noteCount: noteCount };
+        } catch (error) {
+            console.warn('Error parsing map data:', error);
+            return { duration: 0, noteCount: noteCount };
+        }
     }
 
     function formatDuration(milliseconds) {
@@ -1193,28 +1480,50 @@ h1 {
     }
 
     async function fetchMapData(url) {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 10000); 
+        
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                signal: controller.signal,
+                cache: 'default'
+            });
+            clearTimeout(timeoutId);
+            
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             return await response.text();
         } catch (error) {
-            console.error("Error fetching map data:", error);
+            clearTimeout(timeoutId);
+            if (error.name === 'AbortError') {
+                console.warn("Fetch timeout for:", url);
+            } else {
+                console.error("Error fetching map data:", error);
+            }
             return null;
         }
     }
 
+    let scrollTimeout;
     function checkScroll() {
-        if (!infiniteScrollEnabled || isLoading) return;
+        if (scrollTimeout) return;
         
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const windowHeight = window.innerHeight;
-        const documentHeight = document.documentElement.scrollHeight;
-        
-        if (scrollTop + windowHeight >= documentHeight - 200) {
-            loadMoreMaps();
-        }
+        scrollTimeout = setTimeout(() => {
+            if (!infiniteScrollEnabled || isLoading) {
+                scrollTimeout = null;
+                return;
+            }
+            
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const windowHeight = window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            if (scrollTop + windowHeight >= documentHeight - 200) {
+                loadMoreMaps();
+            }
+            scrollTimeout = null;
+        }, 100);
     }
 
     function loadMoreMaps() {
@@ -1225,9 +1534,10 @@ h1 {
         loadMoreBtn.disabled = true;
         loadMoreBtn.textContent = 'Loading...';
         
-        setTimeout(() => {
+        requestAnimationFrame(() => {
             const previousCount = currentDisplayCount;
-            currentDisplayCount = Math.min(currentDisplayCount + LOAD_BATCH_SIZE, filteredMaps.length);
+            const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+            currentDisplayCount = Math.min(currentDisplayCount + batchSize, filteredMaps.length);
             
             const fragment = document.createDocumentFragment();
             for (let i = previousCount; i < currentDisplayCount; i++) {
@@ -1240,7 +1550,7 @@ h1 {
             updateLoadMoreButton();
             isLoading = false;
             loadingSpinner.style.display = 'none';
-        }, 300);
+        });
     }
 
     function updateLoadMoreButton() {
@@ -1252,12 +1562,13 @@ h1 {
         } else {
             loadMoreBtn.style.display = 'block';
             loadMoreBtn.disabled = false;
-            loadMoreBtn.textContent = `Load ${Math.min(LOAD_BATCH_SIZE, remainingMaps)} More Maps`;
+            const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+            loadMoreBtn.textContent = `Load ${Math.min(batchSize, remainingMaps)} More Maps`;
             scrollIndicator.textContent = `${remainingMaps} maps remaining - Scroll to auto-load`;
         }
     }
 
-    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('scroll', checkScroll, { passive: true });
     
     loadMoreBtn.addEventListener('click', () => {
         if (!isLoading) {
@@ -1266,11 +1577,11 @@ h1 {
     });
 
     let searchTimeout;
-
     searchBar.addEventListener('input', () => {
         clearTimeout(searchTimeout);
         searchTimeout = setTimeout(() => {
-            currentDisplayCount = LOAD_BATCH_SIZE;
+            const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+            currentDisplayCount = batchSize;
             filterAndRenderMaps();
         }, 300);
     });
@@ -1288,23 +1599,38 @@ h1 {
 
     newMapsCheckbox.addEventListener('change', () => {
         showNewMapsOnly = newMapsCheckbox.checked;
-        currentDisplayCount = LOAD_BATCH_SIZE;
+        const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+        currentDisplayCount = batchSize;
         filterAndRenderMaps();
     });
 
     sortToggle.addEventListener('click', () => {
         sortAscending = !sortAscending;
         sortToggle.textContent = sortAscending ? "Sort: Easy → Hard" : "Sort: Hard → Easy";
-        currentDisplayCount = LOAD_BATCH_SIZE;
+        const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+        currentDisplayCount = batchSize;
         filterAndRenderMaps();
     });
 
     [durationMinInput, durationMaxInput, notesMinInput, notesMaxInput].forEach(input => {
-        input.addEventListener('input', () => {
-            currentDisplayCount = LOAD_BATCH_SIZE;
+        input.addEventListener('input', debounce(() => {
+            const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+            currentDisplayCount = batchSize;
             filterAndRenderMaps();
-        });
+        }, 300));
     });
+
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
 
     document.querySelectorAll('#difficulty-filters .filter-button').forEach(button => {
         button.addEventListener('click', () => {
@@ -1317,7 +1643,8 @@ h1 {
             } else {
                 selectedDifficulties = selectedDifficulties.filter(d => d !== difficulty);
             }
-            currentDisplayCount = LOAD_BATCH_SIZE;
+            const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+            currentDisplayCount = batchSize;
             filterAndRenderMaps();
         });
     });
@@ -1333,7 +1660,8 @@ h1 {
             } else {
                 selectedPatterns = selectedPatterns.filter(p => p !== pattern);
             }
-            currentDisplayCount = LOAD_BATCH_SIZE;
+            const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+            currentDisplayCount = batchSize;
             filterAndRenderMaps();
         });
     });
@@ -1341,7 +1669,8 @@ h1 {
     document.querySelectorAll('input[name="apm-filter"]').forEach(radio => {
         radio.addEventListener('change', () => {
             apmFilter = radio.value;
-            currentDisplayCount = LOAD_BATCH_SIZE;
+            const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+            currentDisplayCount = batchSize;
             filterAndRenderMaps();
         });
     });
@@ -1360,12 +1689,14 @@ h1 {
         durationMaxInput.value = '';
         notesMinInput.value = '';
         notesMaxInput.value = '';
-        currentDisplayCount = LOAD_BATCH_SIZE;
+        const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+        currentDisplayCount = batchSize;
         filterAndRenderMaps();
     });
 
     document.querySelector('.apply-filters').addEventListener('click', () => {
-        currentDisplayCount = LOAD_BATCH_SIZE;
+        const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
+        currentDisplayCount = batchSize;
         filterAndRenderMaps();
         filterMenu.classList.remove('show');
     });
@@ -1474,46 +1805,66 @@ h1 {
             mapDifficulty = "brrrr";
         }
         card.classList.add(mapDifficulty);
+        
         let newTagHtml = '';
         if (m.isNew) {
             newTagHtml = '<div class="new-tag">NEW</div>';
         }
 
-        let mapStatsHtml = `
-            <div class="map-stats">
-                <div class="map-stat-item">
-                    <img src="https://i.imgur.com/lv0ynEi.png" alt="Timer Icon">
-                    <span>${m.duration !== undefined ? formatDuration(m.duration) : '--:--'}</span>
+        let mapStatsHtml = '';
+        if (!isLowQualityMode || (m.duration !== undefined && m.noteCount !== undefined)) {
+            mapStatsHtml = `
+                <div class="map-stats">
+                    <div class="map-stat-item">
+                        <img src="https://i.imgur.com/lv0ynEi.png" alt="Timer Icon">
+                        <span>${m.duration !== undefined ? formatDuration(m.duration) : '--:--'}</span>
+                    </div>
+                    <div class="map-stat-item">
+                        <img src="https://i.imgur.com/7pfvgCl.png" alt="Notes Icon">
+                        <span>${m.noteCount !== undefined ? m.noteCount.toLocaleString() : '----'}</span>
+                    </div>
                 </div>
-                <div class="map-stat-item">
-                    <img src="https://i.imgur.com/7pfvgCl.png" alt="Notes Icon">
-                    <span>${m.noteCount !== undefined ? m.noteCount.toLocaleString() : '----'}</span>
+            `;
+        } else if (isLowQualityMode) {
+            mapStatsHtml = `
+                <div class="map-stats">
+                    <div class="map-stat-item">
+                        <span style="color: #ccc; font-size: 0.8em;">Stats disabled in Low Quality Mode</span>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        }
 
         let patternsHtml = '';
-        const patternListHtml = m.patterns.map(p => {
-            const patternName = p === "No Data" ? "No Pattern Data" : p;
-            return `<li>${patternName}</li>`;
-        }).join('');
-        patternsHtml = `
-            <div class="patterns-dropdown-container">
-                <button class="patterns-dropdown-toggle" onclick="togglePatternsDropdown(this)">Show Patterns</button>
-                <div class="patterns-dropdown-menu">
-                    <ul>
-                        ${patternListHtml}
-                    </ul>
+        if (m.patterns && m.patterns.length > 0) {
+            const patternListHtml = m.patterns.map(p => {
+                const patternName = p === "No Data" ? "No Pattern Data" : p;
+                return `<li>${patternName}</li>`;
+            }).join('');
+            patternsHtml = `
+                <div class="patterns-dropdown-container">
+                    <button class="patterns-dropdown-toggle" onclick="togglePatternsDropdown(this)">Show Patterns</button>
+                    <div class="patterns-dropdown-menu">
+                        <ul>
+                            ${patternListHtml}
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
+        } else {
+            patternsHtml = `
+                <div class="patterns-dropdown-container">
+                    <button class="patterns-dropdown-toggle no-click">No Patterns</button>
+                </div>
+            `;
+        }
 
         const escapedLink = m.link.replace(/'/g, "\\'");
         card.innerHTML = `
             ${newTagHtml}
             <div class="map-content">
                 <div class="map-artist">${m.artist}</div>
-                <div class="map-name"><a href="${m.link}" target="_blank">${m.mapName}</a></div>
+                <div class="map-name"><a href="${m.link}" target="_blank" rel="noopener">${m.mapName}</a></div>
                 <div class="map-mapper">Mapped by: ${m.mapper}</div>
                 <div class="map-difficulty">Difficulty: ${m.difficulty}</div>
                 ${mapStatsHtml}
@@ -1551,7 +1902,15 @@ h1 {
 
     async function copyRawData(link) {
         try {
-            const rawContent = await fetchMapData(link);
+            let rawContent = mapDataCache.get(link);
+            if (!rawContent) {
+                const rawLink = getRawUrl(link);
+                rawContent = await fetchMapData(rawLink);
+                if (rawContent) {
+                    mapDataCache.set(rawLink, rawContent);
+                }
+            }
+            
             if (rawContent) {
                 navigator.clipboard.writeText(rawContent).then(() => {
                     showPopup("Raw data copied!", false);
@@ -1568,6 +1927,10 @@ h1 {
     }
 
     function togglePatternsDropdown(button) {
+        if (button.classList.contains('no-click')) {
+            return;
+        }
+        
         const dropdownMenu = button.nextElementSibling;
         dropdownMenu.classList.toggle('show');
         const allMenus = document.querySelectorAll('.patterns-dropdown-menu, .action-dropdown-menu');
@@ -1597,9 +1960,15 @@ h1 {
         }
     });
 
+    setInterval(() => {
+        if (mapDataCache.size > 1000) {
+            console.log('Clearing map data cache to free memory');
+            mapDataCache.clear();
+        }
+    }, 300000);
+
     document.addEventListener("DOMContentLoaded", () => {
         loadMapDataFromJSON();
-        setInterval(loadMapDataFromJSON, 60000);
     });
 </script>
 </body>
