@@ -904,7 +904,8 @@ body {
     text-align: center;
     padding: 20px;
     margin: 0;
-    width: 100vw;
+    transform: scale(0.75);
+    transform-origin: top center;
 
 }
 
@@ -1329,17 +1330,14 @@ h1 {
     background-color: #0056b3;
 }
 
-
 #map-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, 320px);
     gap: 30px;
-    padding: 0;
-    margin: 0;
-    width: max-content;
-    align-items: stretch;
-    justify-content: start;
-    overflow-x: auto;
+    padding: 0 20px;
+    margin: 0 auto;
+    max-width: 1400px;
+    justify-content: center;
 }
 
 .low-quality #map-list {
