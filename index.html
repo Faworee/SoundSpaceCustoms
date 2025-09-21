@@ -1330,14 +1330,33 @@ h1 {
     background-color: #0056b3;
 }
 
+
 #map-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(1, 1fr);
     gap: 30px;
     padding: 0 20px;
     margin: 0 auto;
     max-width: 1400px;
     align-items: stretch;
+}
+
+@media (min-width: 400px) {
+    #map-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 600px) {
+    #map-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 800px) {
+    #map-list {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
 .low-quality #map-list {
