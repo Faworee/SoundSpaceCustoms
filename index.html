@@ -293,11 +293,11 @@
                 if (statsElement && map.duration !== undefined && map.noteCount !== undefined) {
                     statsElement.innerHTML = `
                         <div class="map-stat-item">
-                            <img src="https:i.imgur.com/lv0ynEi.png" alt="Timer Icon">
+                            <img src="Clock.png" alt="Timer Icon">
                             <span>${formatDuration(map.duration)}</span>
                         </div>
                         <div class="map-stat-item">
-                            <img src="https:i.imgur.com/7pfvgCl.png" alt="Notes Icon">
+                            <img src="Note.png" alt="Notes Icon">
                             <span>${map.noteCount.toLocaleString()}</span>
                         </div>
                     `;
@@ -708,12 +708,25 @@
                 mapStatsHtml = `
                     <div class="map-stats">
                         <div class="map-stat-item">
-                            <img src="https:i.imgur.com/lv0ynEi.png" alt="Timer Icon">
+                            <img src="Clock.png" alt="Timer Icon">
                             <span>${formatDuration(m.duration)}</span>
                         </div>
                         <div class="map-stat-item">
-                            <img src="https:i.imgur.com/7pfvgCl.png" alt="Notes Icon">
+                            <img src="Note.png" alt="Notes Icon">
                             <span>${m.noteCount.toLocaleString()}</span>
+                        </div>
+                    </div>
+                `;
+            } else {
+                mapStatsHtml = `
+                    <div class="map-stats">
+                        <div class="map-stat-item">
+                            <img src="Clock.png" alt="Timer Icon">
+                            <span>--:--</span>
+                        </div>
+                        <div class="map-stat-item">
+                            <img src="Note.png" alt="Notes Icon">
+                            <span>----</span>
                         </div>
                     </div>
                 `;
@@ -1976,4 +1989,3 @@ h1 {
         padding: 15px;
     }
 }
-
