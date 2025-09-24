@@ -10,7 +10,7 @@
 <meta property="og:url" content="https://faworee.github.io/SoundSpaceCustoms/">
 <meta property="og:type" content="website">
 
-<title>Sound Space Custom Maps - Enhanced</title>
+<title>Sound Space Custom Maps</title>
 <style>
 body {
     background-color: #0f0f0f;
@@ -319,18 +319,6 @@ h1 {
     border: 1px solid #444;
 }
 
-@media (max-width: 768px) {
-    #filter-menu {
-        left: 0;
-        right: 0;
-        transform: none;
-        min-width: auto;
-        max-width: calc(100vw - 40px);
-        margin: 10px 20px;
-        padding: 15px;
-        border-radius: 10px;
-    }
-}
 
 #filter-menu.show {
     display: block;
@@ -2266,8 +2254,8 @@ document.addEventListener('touchstart', (e) => {
         sortAscending = !sortAscending;
         sortToggle.textContent = sortAscending ? "Sort: Easy → Hard" : "Sort: Hard → Easy";
         
-        // Update button states
-        sortToggle.classList.add('active');
+
+                sortToggle.classList.add('active');
         starSortToggle.classList.remove('active');
         
         const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
@@ -2280,8 +2268,8 @@ document.addEventListener('touchstart', (e) => {
         starSortDescending = !starSortDescending;
         starSortToggle.textContent = starSortDescending ? "Sort: ★ High → Low" : "Sort: ★ Low → High";
         
-        // Update button states
-        starSortToggle.classList.add('active');
+
+                starSortToggle.classList.add('active');
         sortToggle.classList.remove('active');
         
         const batchSize = isLowQualityMode ? LOAD_BATCH_SIZE * 2 : LOAD_BATCH_SIZE;
@@ -2358,8 +2346,8 @@ document.addEventListener('touchstart', (e) => {
         document.getElementById('apm-all').checked = true;
         newMapsCheckbox.checked = false;
         
-        // Reset sliders
-        if (durationMinThumb) {
+
+                if (durationMinThumb) {
             durationMinThumb.style.left = '0%';
             durationMaxThumb.style.left = '100%';
             durationTrack.style.left = '0%';
@@ -2418,8 +2406,8 @@ document.addEventListener('touchstart', (e) => {
         const searchText = searchBar.value.toLowerCase();
         
         filteredMaps = maps.filter(m => {
-            // Enhanced search including GitHub links
-            const matchesSearch = m.mapName.toLowerCase().includes(searchText) || 
+
+                        const matchesSearch = m.mapName.toLowerCase().includes(searchText) || 
                                 m.artist.toLowerCase().includes(searchText) || 
                                 m.mapper.toLowerCase().includes(searchText) ||
                                 m.link.toLowerCase().includes(searchText);
@@ -2435,8 +2423,8 @@ document.addEventListener('touchstart', (e) => {
                 matchesApm = !isApm;
             }
 
-            // Improved range filtering
-            const mapDuration = m.duration || 0;
+
+                        const mapDuration = m.duration || 0;
             const mapNotes = m.noteCount || 0;
             
             const matchesDuration = mapDuration >= currentDurationRange.min && mapDuration <= currentDurationRange.max;
@@ -2447,8 +2435,8 @@ document.addEventListener('touchstart', (e) => {
                    matchesDuration && matchesNotes && matchesNewFilter;
         });
 
-        // Improved sorting
-        filteredMaps.sort((a, b) => {
+
+                filteredMaps.sort((a, b) => {
             if (sortMode === 'star') {
                 const starA = a.starRating || 0;
                 const starB = b.starRating || 0;
@@ -2467,8 +2455,8 @@ document.addEventListener('touchstart', (e) => {
                 }
             }
             
-            // Secondary sorting criteria
-            if (a.isNew !== b.isNew) {
+
+                                if (a.isNew !== b.isNew) {
                 return a.isNew ? -1 : 1;
             }
             
@@ -2694,4 +2682,5 @@ document.addEventListener('touchstart', (e) => {
 </script>
 </body>
 </html>
+
 
