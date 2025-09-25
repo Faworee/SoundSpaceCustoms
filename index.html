@@ -2611,29 +2611,33 @@ document.addEventListener('touchstart', (e) => {
         });
     }
 
-    async function copyRawData(link) {
-        try {
-            let rawContent = mapDataCache.get(link);
-            if (!rawContent) {
-                const rawLink = getRawUrl(link);
-                rawContent = await fetchMapData(rawLink);
-                if (rawContent) {
-                    mapDataCache.set(rawLink, rawContent);
-                }
-            }
-            
-            if (rawContent) {
-                navigator.clipboard.writeText(rawContent).then(() => {
-                    showPopup("Raw data copied!", false);
-                }).catch(() => {
-                    showPopup("Failed to copy raw data.", true);
-                });
-            } else {
-                showPopup("Failed to fetch raw data.", true);
-            }
-        } catch (error) {
-            showPopup("Failed to copy raw data.", true);
+   async function copyRawData(link) {
+    try {
+        const rawLink = getRawUrl(link);
+        let rawContent = null;
+        
+        if (window.mapDataManager && window.mapDataManager.mapDataCache) {
+            rawContent = window.mapDataManager.mapDataCache.get(rawLink);
         }
+        
+        if (!rawContent) {
+            rawContent = await fetchMapData(rawLink);
+            
+            if (rawContent && window.mapDataManager && window.mapDataManager.mapDataCache) {
+                window.mapDataManager.mapDataCache.set(rawLink, rawContent);
+            }
+        }
+        
+        if (rawContent) {
+            await navigator.clipboard.writeText(rawContent);
+            showPopup("Raw data copied!", false);
+        } else {
+            showPopup("Failed to fetch raw data.", true);
+        }
+    } catch (error) {
+        console.error("Error copying raw data:", error);
+        showPopup("Failed to copy raw data.", true);
+    }
     }
 
     function togglePatternsDropdown(button) {
@@ -2682,5 +2686,6 @@ document.addEventListener('touchstart', (e) => {
 </script>
 </body>
 </html>
+
 
 
