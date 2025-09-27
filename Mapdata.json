@@ -3789,6 +3789,62 @@
   ],
   
   [
+    "https://raw.githubusercontent.com/h4z3fyx/sound-space-custom-map/refs/heads/main/The%2013th%20-%20ED%24ANE.txt",
+    "The 13th",
+    "ED$ANE",
+    "h4z3fyx (gabrysj2012)",
+    "Hard",
+    [
+     "Walls"
+    ],
+    true,
+    4.628358362938733
+  ],
+
+  [
+    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/PLUHHH%20-%20reticent",
+    "PLUHHH",
+    "blerp",
+    "reticentmemory",
+    "Tasukete",
+    [
+     "Jumps", 
+     "Quantum", 
+     "Slides"
+    ],
+    true,
+    3.994463387642442
+  ],
+
+  [
+    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/WASSA-reticent",
+    "WASSA",
+    "hr",
+    "reticentmemory",
+    "Tasukete",
+    [
+     "Jumps", 
+     "Streams"
+    ],
+    true,
+    8.458001158390067
+  ],
+
+  [
+    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/cutemakmakfunk%20-%20reticent",
+    "cutemakmakfunk",
+    "DJWahRA",
+    "reticentmemory",
+    "Tasukete",
+    [
+     "Jumps", 
+     "Streams"
+    ],
+    true,
+    8.42756800766058
+  ],
+  
+  [
     "https://raw.githubusercontent.com/dunzazel/SSMaps/refs/heads/main/CUTEMAKMAKFUNK",
     "CUTEMAKMAKFUNK",
     "DJWahRA",
@@ -3806,6 +3862,7 @@
     7.895667356282464
   ]
 ]
+
 
 
 
