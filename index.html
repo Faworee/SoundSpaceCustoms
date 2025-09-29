@@ -629,12 +629,11 @@ h1 {
 
 #map-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 25px;
     padding: 0 20px;
     margin: 0 auto;
     max-width: 1400px;
-    justify-content: center;
 }
 
 @media (min-width: 1200px) {
@@ -804,7 +803,8 @@ h1 {
 
 .artist-name {
     text-align: center;
-    margin: 0 70px 0 50px;
+    margin: 0 auto;
+    padding: 0 60px;
     line-height: 1.2;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -813,6 +813,7 @@ h1 {
     word-break: break-word;
     hyphens: auto;
     flex-grow: 1;
+    width: 100%;
 }
 
 .low-quality .star-rating {
@@ -1981,9 +1982,8 @@ function debounceFilterUpdate() {
 }
 
 function formatArtistName(artistName) {
-    return artistName.replace(/([a-z])([A-Z])/g, '$1 $2');
+    return artistName; 
 }
-
 function createStarRating(starRating) {
     if (starRating === null || starRating === undefined) {
         return '<span class="star-rating loading">Loading...</span>';
@@ -2686,6 +2686,7 @@ document.addEventListener('touchstart', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
