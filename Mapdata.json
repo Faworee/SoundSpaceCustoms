@@ -3926,8 +3926,41 @@
     ],
     true,
     5.028278878478651
+  ],
+
+    [
+    "https://raw.githubusercontent.com/Faworee/Faworee_Custom_Maps/refs/heads/main/Underscore%20-%20Threshold",
+    "Threshold",
+    "Underscore",
+    "faworee",
+    "Brrrr",
+    [
+      "Quantum",
+      "Mega Notes",
+      "Streams",
+      "Jumps"
+    ],
+    true,
+    11.7828278878478651
+  ],
+
+  [
+    "https://github.com/killedsev/ss/blob/main/Underscore%20-%20RawHaus.txt",
+    "RawHaus",
+    "Underscore",
+    "sev",
+    "Brrrr",
+    [
+      "Streams",
+      "Walls", 
+      "Bursts",
+      "Stacks"
+    ],
+    true,
+    8.6128878478651343
   ]
 ]
+
 
 
 
