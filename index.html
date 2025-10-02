@@ -1436,7 +1436,7 @@ h1 {
 class MapDataManager {
     constructor() {
         this.mapDataCache = new Map();
-        this.batchSize = 350;
+        this.batchSize = 25;
         this.retryAttempts = 3;
         this.retryDelay = 1000;
         this.loadingProgress = { loaded: 0, total: 0 };
@@ -2692,6 +2692,7 @@ document.addEventListener('touchstart', (e) => {
 </script>
 </body>
 </html>
+
 
 
 
