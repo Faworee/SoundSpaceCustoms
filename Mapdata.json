@@ -3958,8 +3958,77 @@
     ],
     true,
     8.6128878478651343
+  ],
+
+  [
+    "https://raw.githubusercontent.com/mrdaniel-1/4ndromeda/refs/heads/main/4ndromeda.txt",
+    "4NDROMEDA",
+    "Zytrx & Nstryder",
+    "Scxthes",
+    "Logic",
+    [
+      "Streams",
+      "Walls",
+      "Jumps",
+      "Vibros"
+    ],
+    true,
+    4.461401944078493
+  ],
+  [
+    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/so%20so%20delusional",
+    "im so delusional",
+    "d3r, blood pup",
+    "reticentmemory",
+    "Tasukete",
+    [
+      "Streams",
+      "Jumps",
+      "Quantum",
+      "Stacks",
+      "Spins"
+    ],
+    true,
+    9.624776595319371
+  ],
+  [
+    "https://raw.githubusercontent.com/uwuvik/SoundSpaceMaps/refs/heads/main/WE%20WERE%20SUPPOSED%20TO%20WEAR%20ARGYLE",
+    "We Were Supposed to wear argyle",
+    "leroy",
+    "sorruw",
+    "Tasukete",
+    [
+      "Streams"
+    ],
+    true,
+    10.823383596213192
+  ],
+  [
+    "https://raw.githubusercontent.com/Faworee/faworee_Converts_soundspacecustoms/refs/heads/main/Camellia%20-%20%2BERABY%2BE%20CONNEC%2B10N%20wot%20%20%20logic",
+    "+ERABY+E CONNECT10N",
+    "Camellia",
+    "wot",
+    "Logic",
+    [
+      "No Data"
+    ],
+    true,
+    5.267853316469134
+  ],
+  [
+    "https://raw.githubusercontent.com/Faworee/faworee_Converts_soundspacecustoms/refs/heads/main/Sdrullo%20Galaxyless%20%26%20MVRLY%20brrr",
+    "Darkstar",
+    "Galaxyless & MVRLY",
+    "Sdrullo",
+    "Brrrr",
+    [
+      "No Data"
+    ],
+    true,
+    8.7930327805719
   ]
 ]
+
 
 
 
