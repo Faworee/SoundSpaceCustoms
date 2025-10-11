@@ -2314,19 +2314,32 @@ async function loadMapDataFromJSON() {
     try {
         loadingSpinner.style.display = 'block';
         let mapData;
-        
-        const timestamp = Date.now();
-        const response = await fetch(`Mapdata.json?v=${timestamp}`, {
-            cache: 'no-cache',
-            headers: {
-                'Cache-Control': 'no-cache',
-                'Pragma': 'no-cache'
+        const cacheKey = "soundSpaceMapCache";
+        const cacheTimeKey = "soundSpaceMapCacheTime";
+        const cacheDuration = 1000 * 60 * 30;
+
+        const now = Date.now();
+        const cached = localStorage.getItem(cacheKey);
+        const cachedTime = localStorage.getItem(cacheTimeKey);
+
+        if (cached && cachedTime && now - cachedTime < cacheDuration) {
+            mapData = JSON.parse(cached);
+        } else {
+            const timestamp = Date.now();
+            const response = await fetch(`Mapdata.json?v=${timestamp}`, {
+                cache: 'no-cache',
+                headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache'
+                }
+            });
+            if (!response.ok) {
+                throw new Error(`Failed to load map data: ${response.status} ${response.statusText}`);
             }
-        });
-        if (!response.ok) {
-            throw new Error(`Failed to load map data: ${response.status} ${response.statusText}`);
+            mapData = await response.json();
+            localStorage.setItem(cacheKey, JSON.stringify(mapData));
+            localStorage.setItem(cacheTimeKey, now);
         }
-        mapData = await response.json();
 
         if (!Array.isArray(mapData)) {
             throw new Error('Invalid JSON format: Expected an array of maps');
@@ -2356,24 +2369,13 @@ async function loadMapDataFromJSON() {
             throw new Error('No valid map data found');
         }
 
-        const favoriteMaps = maps.filter(map => favoritesManager.isFavorite(map));
-        
-        if (favoriteMaps.length > 0) {
-            console.log(`Loading stats for ${favoriteMaps.length} favorited maps first...`);
-            const dataManager = new MapDataManager();
-            await dataManager.loadAllMapData(favoriteMaps);
-            window.mapDataManager = dataManager;
-        }
+        const dataManager = new MapDataManager();
+        await dataManager.loadAllMapData(maps);
 
         initSliders();
         filterAndRenderMaps();
 
-        if (favoriteMaps.length === 0) {
-            console.log('No favorited maps found, loading all map stats...');
-            const dataManager = new MapDataManager();
-            await dataManager.loadAllMapData(maps);
-            window.mapDataManager = dataManager;
-        }
+        window.mapDataManager = dataManager;
 
     } catch (error) {
         loadingSpinner.style.display = 'none';
@@ -2393,6 +2395,7 @@ async function loadMapDataFromJSON() {
         `;
     }
 }
+
 function parseMapData(rawData) {
     if (!rawData || typeof rawData !== 'string') {
         return { duration: 0, noteCount: 0 };
@@ -3001,5 +3004,6 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
