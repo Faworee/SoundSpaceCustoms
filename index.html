@@ -2316,7 +2316,7 @@ async function loadMapDataFromJSON() {
         let mapData;
         const cacheKey = "soundSpaceMapCache";
         const cacheTimeKey = "soundSpaceMapCacheTime";
-        const cacheDuration = 1000 * 60 * 30;
+        const cacheDuration = 1000 * 30
 
         const now = Date.now();
         const cached = localStorage.getItem(cacheKey);
@@ -3004,6 +3004,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
