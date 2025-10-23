@@ -562,6 +562,8 @@
             const difficulty = formData.get('difficulty');
             const additionalInfo = formData.get('additionalInfo');
             
+            console.log('GitHub Link:', githubLink); // Debug log
+            
             const patterns = [];
             const patternCheckboxes = document.querySelectorAll('input[name="patterns"]:checked');
             patternCheckboxes.forEach(checkbox => {
