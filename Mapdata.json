@@ -2833,7 +2833,7 @@
     8.856854888136644
   ],
   [
-    "https://gist.githubusercontent.com/Deathjkdf/ec10269ad4732895de9788977c5b4d54/raw/70613817640e1e454591004a2a4f93ea3cad3447/mapped%2520by%2520FuSe%2520Omega%2520and%2520Pinchyl",
+    "https://gist.githubusercontent.com/Faworee/85c704ba38a267df6b5f3ec53b0cecbb/raw/461f6bd7e49119169adc1904c9f6e16a013a7f7c/mapped%25252520by%25252520FuSe%25252520Omega%25252520and%25252520Pinchyl",
     "Trusted Villain VIP",
     "Zytrx",
     "FuSe Omega and Pinchyl",
@@ -4109,8 +4109,83 @@
     ],
     true,
     7.498139715112751
+  ],
+  [
+    "https://raw.githubusercontent.com/alter133/AlterList/refs/heads/main/monkeyspartyTASKUETE",
+    "Monkey's Party",
+    "Alex Tschallener",
+    "Alter/p183805",
+    "Tasukete",
+    [
+      "Streams",
+      "Jumps",
+      "Bursts"
+    ],
+    true,
+    8.763709832344807
+  ],
+  [
+    "https://raw.githubusercontent.com/alter133/AlterList/refs/heads/main/MonkeypartBRR",
+    "Monkey's Party",
+    "Alex Tschallener",
+    "Alter/p183805",
+    "Brrr",
+    [
+      "Streams",
+      "Jumps",
+      "Bursts",
+      "Slides"
+    ],
+    true,
+    6.112830495853249
+  ],
+  [
+    "https://raw.githubusercontent.com/alter133/AlterList/refs/heads/main/MonkeypartyLOGIC",
+    "Monkey's Party",
+    "Alex Tschallener",
+    "Alter/p183805",
+    "Logic",
+    [
+      "Jumps",
+      "Bursts",
+      "Spins",
+      "Slides"
+    ],
+    true,
+    3.687476761549562
+  ],
+  [
+    "https://raw.githubusercontent.com/alter133/AlterList/refs/heads/main/monkeyspartyHARD",
+    "Monkey's Party",
+    "Alex Tschallener",
+    "Alter/p183805",
+    "Hard",
+    [
+      "Streams",
+      "Tech",
+      "Quantum",
+      "Spins"
+    ],
+    true,
+    2.181475546489106
+  ],
+  [
+    "https://raw.githubusercontent.com/alter133/AlterList/refs/heads/main/monkeypartyEASY",
+    "Monkey's Party",
+    "Alex Tschallener",
+    "Alter/p183805",
+    "Easy",
+    [
+      "Jumps",
+      "Unconventional",
+      "Timing"
+    ],
+    true,
+    1.0765214877891436
   ]
+
 ]
+
 
 
 
