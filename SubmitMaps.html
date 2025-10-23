@@ -495,11 +495,10 @@
             try {
                 showMessage('processingMessage', 'Fetching map file from GitHub...');
                 
+                // Fetch the raw map file
                 const fileResponse = await fetch(githubUrl, {
-                    mode: 'cors',
-                    headers: {
-                        'Accept': 'text/plain'
-                    }
+                    method: 'GET',
+                    cache: 'no-cache'
                 });
                 
                 if (!fileResponse.ok) {
@@ -508,15 +507,13 @@
                 }
                 
                 const rawMapData = await fileResponse.text();
+                showMessage('processingMessage', 'Calculating star rating... This may take a moment.');
 
-                showMessage('processingMessage', 'Calculating star rating...');
-
+                // Try to get star rating from API
                 const response = await fetch('https://development.rhythia.com/api/getRawStarRating', {
                     method: 'POST',
-                    mode: 'cors',
                     headers: { 
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
                         rawMap: rawMapData,
@@ -525,14 +522,20 @@
                 });
 
                 if (!response.ok) {
-                    console.warn('Star rating API returned error, using default value');
+                    console.warn('Star rating API returned error status:', response.status);
                     return 0;
                 }
 
                 const data = await response.json();
-                return data.beatmap.starRating || 0;
+                const starRating = data.beatmap?.starRating || 0;
+                
+                if (starRating > 0) {
+                    console.log('✅ Star rating calculated:', starRating);
+                }
+                
+                return starRating;
             } catch (err) {
-                console.warn('Star rating calculation unavailable (CORS/Network issue), defaulting to 0');
+                console.warn('Star rating calculation failed:', err.message);
                 return 0;
             }
         }
@@ -573,7 +576,8 @@
             submitBtn.disabled = true;
             submitBtn.textContent = 'Processing...';
             
-            const starRating = await getStarRating(githubLink);
+            // Try to get star rating (works on local server, may fail on GitHub Pages)
+            const starRating = await getStarRating(githubUrl);
             const isRated = starRating > 0;
             
             const mapArray = [
@@ -669,7 +673,10 @@
                 if (response.ok || response.status === 204) {
                     setRateLimit(clientId);
                     hideAllMessages();
-                    showMessage('successMessage', `Map submitted successfully! Star Rating: ${starRating.toFixed(2)}`);
+                    const ratingMessage = isRated 
+                        ? `Map submitted successfully! ⭐ Star Rating: ${starRating.toFixed(2)}`
+                        : `Map submitted successfully! Star rating will be calculated later.`;
+                    showMessage('successMessage', ratingMessage);
                     this.reset();
                 } else {
                     const errorText = await response.text().catch(() => 'Unknown error');
