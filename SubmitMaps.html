@@ -577,7 +577,7 @@
             submitBtn.textContent = 'Processing...';
             
             // Try to get star rating (works on local server, may fail on GitHub Pages)
-            const starRating = await getStarRating(githubUrl);
+            const starRating = await getStarRating(githubLink);
             const isRated = starRating > 0;
             
             const mapArray = [
