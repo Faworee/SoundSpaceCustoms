@@ -100,6 +100,7 @@
 
         .form-content {
             padding: 30px;
+            padding-bottom: 80px;
             max-height: calc(90vh - 120px);
             overflow-y: auto;
             overflow-x: hidden;
@@ -446,11 +447,6 @@
             return 'anonymous-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9);
         }
 
-        function decryptConfig() {
-            const key = 'aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQxNzI1OTQ1Njg0ODQ2MTg4Ny9VQWJxRjVHV3NNYVBVeU9XSC1WVUc5WG44TzJQMU5NWTJsT0huTkN1X2d3SVFEbzhrOW1FRlN2dHVXc2k3djUyNG92bw==';
-            return atob(key);
-        }
-
         function isRateLimited(clientId) {
             const now = Date.now();
             if (rateLimitStorage[clientId] && (now - rateLimitStorage[clientId]) < RATE_LIMIT_TIME) {
@@ -578,6 +574,7 @@
             submitBtn.textContent = 'Processing...';
             
             const starRating = await getStarRating(githubLink);
+            const isRated = starRating > 0;
             
             const mapArray = [
                 githubLink,
@@ -586,7 +583,7 @@
                 mapper,
                 difficulty,
                 patterns,
-                true,
+                isRated,
                 starRating
             ];
             
@@ -631,7 +628,7 @@
                     },
                     {
                         name: "✅ Rated",
-                        value: "true",
+                        value: isRated ? "true" : "false",
                         inline: true
                     },
                     {
@@ -660,8 +657,7 @@
             };
             
             try {
-                const webhookUrl = 'https://discord.com/api/webhooks/1417259456848461887/UAbqF5GWsMaPUyOWH-VUG9Xn8O2P1NMY2lOHnNCu_gwIQDo8k9mEFSvtuWsi7v524ovo';
-                const response = await fetch(webhookUrl, {
+                const response = await fetch('https://discord.com/api/webhooks/1417259456848461887/UAbqF5GWsMaPUyOWH-VUG9Xn8O2P1NMY2lOHnNCu_gwIQDo8k9mEFSvtuWsi7v524ovo', {
                     method: 'POST',
                     mode: 'cors',
                     headers: {
