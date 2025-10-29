@@ -63,7 +63,7 @@
     "https://raw.githubusercontent.com/xilpy/sacga/main/TERA%20IO%20OVERMAP",
     "Tera I/O",
     "Camellia",
-    "XILP",
+    "Xilp",
     "Tasukete",
     [
       "Quantum",
@@ -1900,7 +1900,7 @@
     "https://raw.githubusercontent.com/xilpy/sacga/main/Chocolate%20Shotgun!",
     "Chocolate Shotgun",
     "MetaHumanBoi",
-    "xilp",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -1912,7 +1912,7 @@
     "https://gist.githubusercontent.com/xilpy/565010c2e511e38424273732c9357d13/raw/06516e7eb77c5990b171326ad462e889d04f7cd1/CORRUPTED%20DATABASE",
     "CORRUPTED DATABASE",
     "MetaHumanBoi",
-    "xilp",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -1960,7 +1960,7 @@
     "https://raw.githubusercontent.com/xilpy/sacga/main/Solar%20Strike",
     "Solar Strike",
     "MetaHumanBoi",
-    "xilp",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -2164,7 +2164,7 @@
     "https://raw.githubusercontent.com/xilpy/sacga/refs/heads/main/Cla%C3%ADomh%20Solais'",
     "Claíomh Solais'",
     "Nstryder vs Kyutatsuki",
-    "xilp",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -2332,7 +2332,7 @@
     "https://raw.githubusercontent.com/hihihihihiray/ss-maps/refs/heads/maps/sacuna%20-%20karma%20(xilpy)",
     "Karma",
     "Sacuna",
-    "xilp",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -2344,7 +2344,7 @@
     "https://gist.githubusercontent.com/xilpy/c02b2b1b7936ae17bf593dcd5caa3378/raw/03913accc3ae52cca24777d244585472b8cb11c4/Rainbow",
     "rainbow",
     "Sacuna",
-    "xilp",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -2356,7 +2356,7 @@
     "https://raw.githubusercontent.com/xilpy/sacga/refs/heads/main/Gravity%20Switch%20V2",
     "Gravity Switch",
     "Sound Space X Velocity Music",
-    "xilp",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -2752,7 +2752,7 @@
     "https://raw.githubusercontent.com/xilpy/sacga/refs/heads/main/MACH%20874030",
     "MACH 874939",
     "Zytrx",
-    "xilp",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -3546,21 +3546,6 @@
     1.5020680568622056
   ],
   [
-    "https://raw.githubusercontent.com/Faworee/faworee_Converts_soundspacecustoms/refs/heads/main/JET%202%20HOLIDAY%20FUNK",
-    " JET 2 HOLIDAY FUNK",
-    "shogrim",
-    "porshii",
-    "Brrrr",
-    [
-      "Quantum",
-      "Unconventional",
-      "Streams",
-      "Slides"
-    ],
-    false,
-    9.132270558497837
-  ],
-  [
     "https://raw.githubusercontent.com/Faworee/faworee_Converts_soundspacecustoms/refs/heads/main/porshii%20wonderland",
     "Wonderland",
     "X3ll3n",
@@ -3740,7 +3725,7 @@
     "https://raw.githubusercontent.com/Faworee/faworee_Converts_soundspacecustoms/refs/heads/main/Xilp%20hadron%20collision%20tasukete",
     "Hadron Collision",
     "Zytrx",
-    "xilp",
+    "Xilp",
     "Tasukete",
     [
      "No Data"
@@ -3826,7 +3811,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     6.0244456001445865
   ],
   [
@@ -3838,7 +3823,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     8.443333658522459
   ],
   [
@@ -3850,7 +3835,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     9.563127449928434
   ],
   [
@@ -3862,7 +3847,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     13.909133163486638
   ],
   [
@@ -3874,7 +3859,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     9.697952200606712
   ],
   [
@@ -3886,7 +3871,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     8.14113599129417
   ],
   [
@@ -3898,7 +3883,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     8.662788995306476
   ],
 
@@ -3909,7 +3894,7 @@
             "Matt430",
             "Brrrr",
             ["No Data"],
-            true,    
+            false,    
             5.8877594809173806
   ],
   
@@ -3922,7 +3907,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     5.028278878478651
   ],
 
@@ -3938,8 +3923,8 @@
       "Streams",
       "Jumps"
     ],
-    true,
-    11.7828278878478651
+    false,
+    9.7828278878478651
   ],
 
   [
@@ -3954,7 +3939,7 @@
       "Bursts",
       "Stacks"
     ],
-    true,
+    false,
     8.6128878478651343
   ],
 
@@ -3970,7 +3955,7 @@
       "Jumps",
       "Vibros"
     ],
-    true,
+    false,
     4.461401944078493
   ],
  
@@ -3983,7 +3968,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     5.267853316469134
   ],
   [
@@ -3995,7 +3980,7 @@
     [
       "No Data"
     ],
-    true,
+    false,
     8.7930327805719
   ],
 
@@ -4063,7 +4048,7 @@
     "https://gist.githubusercontent.com/xilpy/47ed52668559c30f85b054e276bcc931/raw/fb2cf8159015c313b362acf8af72457a37e1b6c2/Machination",
     "Machination",
     "Underscore",
-    "Xilpy",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -4075,7 +4060,7 @@
     "https://gist.githubusercontent.com/xilpy/a7ff571e486d9dbabf4e364e91e2b454/raw/9772dd3759da492697a95d30a6fb9399120edd0e/Kyzaghan",
     "Kyzaghan",
     "Underscore",
-    "Xilpy",
+    "Xilp",
     "Brrrr",
     [
       "No Data"
@@ -4087,7 +4072,7 @@
     "https://gist.githubusercontent.com/xilpy/ac20331776c9147210f047090abe9f02/raw/12760f87afbf8e5cc881967b15e093b868befcde/Kyzaghan%20overmap",
     "Kyzaghan",
     "Underscore",
-    "Xilpy",
+    "Xilp",
     "Brrrr",
     [
       "Overmap"
@@ -4182,9 +4167,138 @@
     ],
     true,
     1.0765214877891436
+  ],
+  
+  [
+    "https://raw.githubusercontent.com/faworee/Faworee_Custom_Maps/refs/heads/main/Tasukete%20CYBER%20999%20-%20faworee",
+    "CYBER 999",
+    "Underscore",
+    "faworee",
+    "Tasukete",
+    [
+      "Streams",
+      "Walls",
+      "Timing",
+      "Stacks"
+    ],
+    true,
+    14.11808799969136
+  ],
+  [
+    "https://raw.githubusercontent.com/faworee/faworee_Converts_soundspacecustoms/refs/heads/main/Pegboard%20Nerds%20%26%20Tokyo%20Machine%20-%20Moshi%20Xilp",
+    "Moshi",
+    "Pegboard Nerds & Tokyo Machine",
+    "Xilp",
+    "Brrr",
+    [
+      "Timing"
+    ],
+    true,
+    4.569320631016613
+  ],
+  [
+    "https://raw.githubusercontent.com/faworee/faworee_Converts_soundspacecustoms/refs/heads/main/Throttle%20-%20Bloom%20(brrr)%20Xilp",
+    "Bloom",
+    "Throttle",
+    "Xilp",
+    "Brrr",
+    [
+      "Jumps"
+    ],
+    true,
+    7.996089392957031
+  ],
+  [
+    "https://raw.githubusercontent.com/faworee/faworee_Converts_soundspacecustoms/refs/heads/main/flowers%20cantel%20ver%20(brrr)",
+    "Flowers",
+    "EbenAP",
+    "canteloupe3727",
+    "Brrr",
+    [
+      "Streams"
+    ],
+    true,
+    5.583216967644818
+  ],
+  [
+    "https://raw.githubusercontent.com/faworee/faworee_Converts_soundspacecustoms/refs/heads/main/APMOfficial%20-%20Calm%20Velocity%20B%20%20Logic",
+    "Calm Velocity B",
+    "APM Music",
+    "unknown",
+    "Logic",
+    [
+      "Jumps"
+    ],
+    true,
+    3.718059126827639
+  ],
+  [
+    "https://raw.githubusercontent.com/alter133/AlterList/refs/heads/main/CrabRave",
+    "Crab Rave",
+    "Noisestorm",
+    "Alter/p183805",
+    "Brrr",
+    [
+      "Jumps",
+      "Timing",
+      "Spins"
+    ],
+    true,
+    7.565420320361679
+  ],
+  [
+    "https://gist.githubusercontent.com/curtival04-prog/74be0fe4b6ba2514b902dfd117936cda/raw/f366f12d2465bd6e9bd93109a9c12b72db07b5d5/gistfile1.txt",
+    "african tribe",
+    "APM Music",
+    "curtival",
+    "Tasukete",
+    [
+      "Streams",
+      "Walls",
+      "Tech",
+      "Jumps",
+      "Quantum",
+      "Unconventional",
+      "Bursts",
+      "Timing",
+      "Stacks",
+      "Spins",
+      "Slides",
+      "Vibros"
+    ],
+    true,
+    12.991469346876544
+  ],
+  [
+    "https://www.youtube.com/watch?v=i_oeyE-IdB8",
+    "Ice on my teeth",
+    "ATEEZ",
+    "lilimaprin",
+    "Medium",
+    [
+      "Streams"
+    ],
+    true,
+    0.14102693012101303
+  ],
+  [
+    "https://raw.githubusercontent.com/alter133/AlterList/refs/heads/main/jettwoholiday",
+    "JET 2 HOLIDAY FUNK (Slowed)",
+    " jugsta",
+    "Alter/p183805",
+    "Brrr",
+    [
+      "Streams",
+      "Walls",
+      "Jumps"
+    ],
+    true,
+    11.200222796726647
   ]
 
+
 ]
+
 
 
 
