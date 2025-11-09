@@ -4426,8 +4426,47 @@
     ],
     true,
     8.579852116522808
+  ],
+    [
+    "https://raw.githubusercontent.com/dunzazel/SSMaps/refs/heads/main/toxic-MEDIUM",
+    "toxic",
+    "d3r",
+    "Taco",
+    "Medium",
+    [
+      "Jumps",
+      "Slides"
+    ],
+    true,
+    1.9673877599071452
+  ],
+
+    [
+    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/CHAOS",
+    "CHAOS.",
+    "Unknown",
+    "reticent",
+    "Brrrr",
+    [
+      "No Data"
+    ],
+    true,
+    8.536516841426907
+  ],
+  [
+    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/cytus",
+    "cytus",
+    "Unknown",
+    "reticent",
+    "Brrrr",
+    [
+      "No Data"
+    ],
+    true,
+    8.043514055465273
   ]
 ]
+
 
 
 
