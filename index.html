@@ -2903,7 +2903,26 @@ async function copyLink(link, button, mapData) {
 async function copyRawData(link, mapData) {
     try {
         const rawLink = getRawUrl(link);
-        showPopup("Raw data functionality requires actual map files", true);
+        let rawContent = null;
+        
+        if (window.mapDataManager && window.mapDataManager.mapDataCache) {
+            rawContent = window.mapDataManager.mapDataCache.get(rawLink);
+        }
+        
+        if (!rawContent) {
+            rawContent = await fetchMapData(rawLink);
+            
+            if (rawContent && window.mapDataManager && window.mapDataManager.mapDataCache) {
+                window.mapDataManager.mapDataCache.set(rawLink, rawContent);
+            }
+        }
+        
+        if (rawContent) {
+            await navigator.clipboard.writeText(rawContent);
+            showPopup("Raw data copied!", false);
+        } else {
+            showPopup("Failed to fetch raw data.", true);
+        }
     } catch (error) {
         showPopup("Failed to copy raw data.", true);
     }
@@ -2945,6 +2964,14 @@ document.addEventListener('click', (event) => {
 
 function initChangeLog() {
     const changeLogData = [
+         {
+            version: "1.2.2 - Hotfix",
+            date: "2025-11-09",
+            changes: [
+                "Fixed info  and submitmap button",
+                "Fixed Copy raw data not working.",
+            ]
+        },
         {
             version: "1.2.1 - Update",
             date: "2025-11-09",
