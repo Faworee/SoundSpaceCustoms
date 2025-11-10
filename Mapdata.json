@@ -4406,8 +4406,8 @@
   [
     "https://raw.githubusercontent.com/halfheart03/ss-maps/refs/heads/main/artcore",
     "artcore",
-    "Unknown",
-    "halfheart03 (on github lmk if you want another user)",
+    "mon",
+    "03",
     "Logic",
     [
       "Jumps"
@@ -4444,7 +4444,7 @@
     [
     "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/CHAOS",
     "CHAOS.",
-    "Unknown",
+    "mon",
     "reticent",
     "Brrrr",
     [
@@ -4456,7 +4456,7 @@
   [
     "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/cytus",
     "cytus",
-    "Unknown",
+    "mon",
     "reticent",
     "Brrrr",
     [
@@ -4464,8 +4464,34 @@
     ],
     true,
     8.043514055465273
+  ],
+
+   [
+    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/freeform",
+    "freeform",
+    "mon",
+    "reticent",
+    "Brrrr",
+    [
+      "No Data"
+    ],
+    true,
+    7.606130173113345
+  ],
+  [
+    "https://raw.githubusercontent.com/halfheart03/ss-maps/refs/heads/main/freeform",
+    "freeform",
+    "mon",
+    "03",
+    "Brrrr",
+    [
+      "No Data"
+    ],
+    true,
+    6.765560635330785
   ]
 ]
+
 
 
 
