@@ -3745,46 +3745,7 @@
     false,
     4.628358362938733
   ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/PLUHHH%20-%20reticent",
-    "PLUHHH",
-    "blerp",
-    "reticentmemory",
-    "Tasukete",
-    [
-     "Jumps", 
-     "Quantum", 
-     "Slides"
-    ],
-    false,
-    3.994463387642442
-  ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/WASSA-reticent",
-    "WASSA",
-    "hr",
-    "reticentmemory",
-    "Tasukete",
-    [
-     "Jumps", 
-     "Streams"
-    ],
-    false,
-    8.458001158390067
-  ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/cutemakmakfunk%20-%20reticent",
-    "cutemakmakfunk",
-    "DJWahRA",
-    "reticentmemory",
-    "Tasukete",
-    [
-     "Jumps", 
-     "Streams"
-    ],
-    false,
-    8.42756800766058
-  ],
+
   [
     "https://raw.githubusercontent.com/dunzazel/SSMaps/refs/heads/main/CUTEMAKMAKFUNK-BRRR",
     "CUTEMAKMAKFUNK",
@@ -4004,22 +3965,7 @@
     true,
     12.688810602554238
   ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/so%20so%20delusional",
-    "im so delusional",
-    "d3r, blood pup",
-    "reticentmemory",
-    "Tasukete",
-    [
-      "Streams",
-      "Jumps",
-      "Quantum",
-      "Stacks",
-      "Spins"
-    ],
-    true,
-    9.624776595319371
-  ],
+ 
   [
     "https://raw.githubusercontent.com/htorez/sscustoms/refs/heads/main/jealous",
     "jealous",
@@ -4309,18 +4255,7 @@
     true,
     5.256334751065757
   ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/Underscore%20-%20CYBER%20999",
-    "CYBER 999",
-    "Underscore",
-    "reticentmemory",
-    "Tasukete",
-    [
-      "Unconventional"
-    ],
-    true,
-    9.964399091679251
-  ],
+
   [
     "https://raw.githubusercontent.com/dunzazel/SSMaps/refs/heads/main/Kill_Everybody-BRRR",
     "Kill Everybody",
@@ -4334,48 +4269,7 @@
     true,
     6.118644064190266
   ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/d3r%20-%20love%20bomb",
-    "Love Bomb",
-    "d3r",
-    "reticentmemory",
-    "Brrrr",
-    [
-      "Streams"
-    ],
-    true,
-    8.818004296689624
-  ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/mXnt",
-    "mXnt",
-    "mXnt",
-    "reticentmemory",
-    "Tasukete",
-    [
-      "Streams",
-      "Walls",
-      "Jumps",
-      "Bursts",
-      "Spins"
-    ],
-    true,
-    10.613059003621192
-  ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/nMisaki%20-%20Dubidubidu",
-    "Dubidubidu (Uptempo Remix)",
-    "nMisaki ",
-    "reticentmemory",
-    "Brrrr",
-    [
-      "Streams",
-      "Jumps",
-      "Quantum"
-    ],
-    true,
-    8.717880696708924
-  ],
+
   [
     "https://raw.githubusercontent.com/lightliz/Solar-Strike/46d685d26690570f6885f9b7042322a90ae4e00a/China_Lightliz",
     "Solar Strike",
@@ -4403,18 +4297,7 @@
     true,
     6.347622501953988
   ],
-  [
-    "https://raw.githubusercontent.com/halfheart03/ss-maps/refs/heads/main/artcore",
-    "artcore",
-    "mon",
-    "03",
-    "Logic",
-    [
-      "Jumps"
-    ],
-    true,
-    6.193451410622309
-  ],
+
   [
     "https://raw.githubusercontent.com/Pyxenity/Camellia---ERABY-E-CONNEC-ION/refs/heads/main/Pyxenity",
     "-ERABY-E CONNEC-ION",
@@ -4440,57 +4323,8 @@
     true,
     1.9673877599071452
   ],
-
-    [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/CHAOS",
-    "CHAOS.",
-    "mon",
-    "reticent",
-    "Brrrr",
-    [
-      "No Data"
-    ],
-    true,
-    8.536516841426907
-  ],
-  [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/cytus",
-    "cytus",
-    "mon",
-    "reticent",
-    "Brrrr",
-    [
-      "No Data"
-    ],
-    true,
-    8.043514055465273
-  ],
-
-   [
-    "https://raw.githubusercontent.com/reticentmemory/SSMaps/refs/heads/main/freeform",
-    "freeform",
-    "mon",
-    "reticent",
-    "Brrrr",
-    [
-      "No Data"
-    ],
-    true,
-    7.606130173113345
-  ],
-  [
-    "https://raw.githubusercontent.com/halfheart03/ss-maps/refs/heads/main/freeform",
-    "freeform",
-    "mon",
-    "03",
-    "Brrrr",
-    [
-      "No Data"
-    ],
-    true,
-    6.765560635330785
-  ]
 ]
+
 
 
 
