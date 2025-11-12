@@ -4298,6 +4298,50 @@
     true,
     8.579852116522808
   ],
+
+    [
+    "https://raw.githubusercontent.com/dunzazel/SSMaps/refs/heads/main/Intercosmic_Echo-TASUKETE",
+    "Intercosmic Echo",
+    "Diamomd",
+    "Taco",
+    "Tasukete",
+    [
+      "Streams",
+      "Jumps",
+      "Bursts",
+      "Stacks",
+      "Slides"
+    ],
+    true,
+    8.493671077574476
+  ],
+  [
+    "https://raw.githubusercontent.com/htorez/sscustoms/refs/heads/main/7ate%20-%20my%20moon.txt",
+    "my moon",
+    "7ate",
+    "zeroth",
+    "Brrrr",
+    [
+      "Streams",
+      "Spins"
+    ],
+    true,
+    11.361983531197128
+  ],
+  [
+    "https://github.com/killedsev/ss/blob/main/AVANGARD%202.0.txt",
+    "AVANGARD 2.0",
+    "Alanwaad",
+    "sev",
+    "Brrr",
+    [
+      "Streams",
+      "Walls"
+    ],
+    true,
+    0.14102693012101303
+  ],
+  
     [
     "https://raw.githubusercontent.com/dunzazel/SSMaps/refs/heads/main/toxic-MEDIUM",
     "toxic",
@@ -4312,6 +4356,7 @@
     1.9673877599071452
   ]
 ]
+
 
 
 
