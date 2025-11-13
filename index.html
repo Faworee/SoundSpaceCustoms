@@ -1865,9 +1865,9 @@ class FavoritesManager {
 class MapDataManager {
     constructor() {
         this.mapDataCache = new Map();
-        this.batchSize = 75;
-        this.retryAttempts = 2;
-        this.retryDelay = 100;
+        this.batchSize = 125;
+        this.retryAttempts = 5;
+        this.retryDelay = 250;
         this.loadingProgress = { loaded: 0, total: 0 };
     }
 
@@ -3268,6 +3268,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
