@@ -1672,14 +1672,12 @@ h1 {
             return {
                 country: data.country_name || 'Unknown',
                 countryCode: data.country_code || 'XX',
-                city: data.city || 'Unknown',
                 region: data.region || 'Unknown'
             };
         } catch (error) {
             return {
                 country: 'Unknown',
                 countryCode: 'XX',
-                city: 'Unknown',
                 region: 'Unknown'
             };
         }
@@ -1697,11 +1695,6 @@ h1 {
                     {
                         name: "🌍 Country",
                         value: `${locationData.country} :flag_${locationData.countryCode.toLowerCase()}:`,
-                        inline: true
-                    },
-                    {
-                        name: "🏙️ City",
-                        value: locationData.city,
                         inline: true
                     },
                     {
@@ -1923,6 +1916,8 @@ h1 {
         init();
     }
 })();
+
+
 class FavoritesManager {
     constructor() {
         this.favorites = new Set();
@@ -3393,6 +3388,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 </body>
 </html>
+
 
 
 
