@@ -2592,6 +2592,7 @@ randomMapBtn.addEventListener('click', () => {
     }
     const randomMap = filteredMaps[Math.floor(Math.random() * filteredMaps.length)];
     copyLink(randomMap.link, randomMapBtn, randomMap); 
+    playButtonSound();
 });
 
 favoritesCheckbox.addEventListener('change', () => {
